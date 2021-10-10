@@ -14972,11 +14972,22 @@ html.gecko .sort-destination.sort-destination-margin > [class*="col-"] {
 	}
 }
 
+@media (max-width: 567px) {
+	.isotope-item {
+		width: 180px;
+	}
+}
+@media (max-width: 359px) {
+	.isotope-item {
+		width: 140px;
+	}
+}
+
 @media (max-width: 767px) {
 	.isotope-item {
 		position: static !important;
 		text-align: center;
-		width: 100%;
+		width: 33,33333333%;
 		margin-left: auto;
 		margin-right: auto;
 		transform: none !important;

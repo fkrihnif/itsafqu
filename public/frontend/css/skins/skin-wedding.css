@@ -1003,6 +1003,22 @@ html .nav-pills-light > li.active > a:focus {
 	background-color: #FFF;
 }
 
+.nav-link {
+	color: #60635c;
+}
+
+.nav-link:hover {
+	color: #6d7068;
+}
+
+.nav-link:focus {
+	color: #6d7068;
+}
+
+.nav-link:active {
+	color: #535650;
+}
+
 .section-scroll-dots-navigation-colored > ul > li.active > a:before {
 	background: #60635c;
 }
@@ -1095,6 +1111,10 @@ html .btn-primary {
 	background-color: #60635c;
 	border-color: #60635c #60635c #464943;
 	color: #FFF;
+	--color: #60635c;
+	--hover: #73776e;
+	--disabled: #60635c;
+	--active: #4d4f4a;
 }
 
 html .btn-primary:hover,
@@ -1178,6 +1198,10 @@ html .btn-secondary {
 	background-color: #f4f0ed;
 	border-color: #f4f0ed #f4f0ed #e1d6cd;
 	color: #777;
+	--color: #f4f0ed;
+	--hover: #ffffff;
+	--disabled: #f4f0ed;
+	--active: #e5dcd5;
 }
 
 html .btn-secondary:hover,
@@ -1261,6 +1285,10 @@ html .btn-tertiary {
 	background-color: #333;
 	border-color: #333 #333 #1a1a1a;
 	color: #FFF;
+	--color: #333;
+	--hover: #464646;
+	--disabled: #333;
+	--active: #202020;
 }
 
 html .btn-tertiary:hover,
@@ -1344,6 +1372,10 @@ html .btn-quaternary {
 	background-color: #999;
 	border-color: #999 #999 #808080;
 	color: #FFF;
+	--color: #999;
+	--hover: #acacac;
+	--disabled: #999;
+	--active: #868686;
 }
 
 html .btn-quaternary:hover,
@@ -1427,6 +1459,10 @@ html .btn-dark {
 	background-color: #212529;
 	border-color: #212529 #212529 #0a0c0d;
 	color: #FFF;
+	--color: #212529;
+	--hover: #32383e;
+	--disabled: #212529;
+	--active: #101214;
 }
 
 html .btn-dark:hover,
@@ -1510,6 +1546,10 @@ html .btn-light {
 	background-color: #FFF;
 	border-color: #FFF #FFF #e6e6e6;
 	color: #777;
+	--color: #FFF;
+	--hover: #ffffff;
+	--disabled: #FFF;
+	--active: #ececec;
 }
 
 html .btn-light:hover,
@@ -7044,7 +7084,8 @@ ul.comments .comment-block,
 .product-info img,
 .product-info + .product-info,
 .img-thumbnail.img-thumbnail-hover-icon:before,
-.product-thumb-info {
+.product-thumb-info,
+.accordion.accordion-modern-2 > .card .card-header a {
 	border-radius: 0 !important;
 }
 

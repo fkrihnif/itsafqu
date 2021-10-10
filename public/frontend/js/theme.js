@@ -1,7 +1,7 @@
 /*
 Name: 			Theme Base
 Written by: 	Okler Themes - (http://www.okler.net)
-Theme Version:	9.1.0
+Theme Version:	9.2.0
 */
 
 // Theme
@@ -2801,21 +2801,26 @@ if( $('[data-copy-to-clipboard]').length ) {
 				self.$el.append( '<span class="letters-wrapper"></span><span class="typeWriter"></pre>' );
 
 				var index = 0;
-				var timeout = function(){
-					var st = setTimeout(function(){
-						var letter = letters[index];
-						
-						self.$el.find('.letters-wrapper').append( '<span class="letter '+ ( self.options.letterClass ? self.options.letterClass + ' ' : '' ) +'">' + letter + '</span>' );
 
-						index++;
-						timeout();
-					}, self.options.animationSpeed);
+				setTimeout(function(){
 
-					if( index >= letters.length ) {
-						clearTimeout(st);
-					}
-				};
-				timeout();
+					var timeout = function(){
+						var st = setTimeout(function(){
+							var letter = letters[index];
+							
+							self.$el.find('.letters-wrapper').append( '<span class="letter '+ ( self.options.letterClass ? self.options.letterClass + ' ' : '' ) +'">' + letter + '</span>' );
+
+							index++;
+							timeout();
+						}, self.options.animationSpeed);
+
+						if( index >= letters.length ) {
+							clearTimeout(st);
+						}
+					};
+					timeout();
+
+				}, self.options.startDelay);
 			} else {
 				setTimeout(function(){
 					for( var i = 0; i < letters.length; i++ ) {
@@ -4586,7 +4591,13 @@ if( $('[data-copy-to-clipboard]').length ) {
 			self.options.wrapper.find('.gdpr-agree-trigger').on('click', function(e){
 				e.preventDefault();
 
-				$.cookie( 'porto-privacy-bar', true );
+				$('.gdpr-preferences-form').find('.gdpr-input').each(function(){
+					if( $(this).is(':checkbox') || $(this).is(':hidden') ) {
+						$(this).prop('checked', true);
+					}
+				});
+
+				$('.gdpr-preferences-form').trigger('submit').removeClass('show');
 
 				self.removeCookieBar();
 			});
@@ -4595,20 +4606,20 @@ if( $('[data-copy-to-clipboard]').length ) {
 			self.options.wrapper.find('.gdpr-preferences-trigger').on('click', function(e){
 				e.preventDefault();
 
-				$('.gdpr-preferences-popup').toggleClass('show');
+				$('.gdpr-preferences-popup').addClass('show');
 			});
 
 			// Close Popup Button
 			$('.gdpr-close-popup').on('click', function(e){
 				e.preventDefault();
 
-				$('.gdpr-preferences-popup').toggleClass('show');
+				$('.gdpr-preferences-popup').removeClass('show');
 			});
 
 			// Close Popup When Click Outside of popup area
 			$('.gdpr-preferences-popup').on('click', function(e){
 				if( !$(e.target).closest('.gdpr-preferences-popup-content').get(0) ) {
-					$('.gdpr-preferences-popup').toggleClass('show');
+					$('.gdpr-preferences-popup').removeClass('show');
 				}
 			});
 
@@ -4630,18 +4641,46 @@ if( $('[data-copy-to-clipboard]').length ) {
 				});
 
 				$.cookie( 'porto-privacy-bar', true );
-				$.cookie( 'porto-gdpr-preferences', formData );
 
 				setTimeout(function(){
 					$this.find('button[type="submit"]').text( 'SAVED!' ).removeClass('btn-primary').addClass('btn-success');
 
 					setTimeout(function(){
-						$('.gdpr-preferences-popup').toggleClass('show');
+						$('.gdpr-preferences-popup').removeClass('show');
 						self.removeCookieBar();
 
 						$this.find('button[type="submit"]').text( 'SAVE PREFERENCES' ).removeClass('btn-success').addClass('btn-primary');
 
-						location.reload();
+						if( $.cookie( 'porto-gdpr-preferences' ) ) {
+
+							$.cookie( 'porto-gdpr-preferences', formData );
+							location.reload();
+
+						} else {
+
+							$.cookie( 'porto-gdpr-preferences', formData );
+
+							if ($.isFunction($.fn['themePluginGDPRWrapper']) && $('[data-plugin-gdpr-wrapper]').length) {
+
+								$(function() {
+									$('[data-plugin-gdpr-wrapper]:not(.manual)').each(function() {
+										var $this = $(this),
+											opts;
+
+										$this.removeData('__gdprwrapper');
+
+										var pluginOptions = theme.fn.getOptions($this.data('plugin-options'));
+										if (pluginOptions)
+											opts = pluginOptions;
+
+										$this.themePluginGDPRWrapper(opts);
+									});
+								});
+
+							}
+
+						}
+
 					}, 500);
 				}, 1000);
 			});
@@ -4755,6 +4794,7 @@ if( $('[data-copy-to-clipboard]').length ) {
 			var self = this;
 
 			if( $.cookie( 'porto-gdpr-preferences' ) && $.cookie( 'porto-gdpr-preferences' ).indexOf( self.options.checkCookie ) != -1 ) {
+
 				$.ajax({
 					url: self.options.ajaxURL,
 					cache: false,
@@ -4762,12 +4802,15 @@ if( $('[data-copy-to-clipboard]').length ) {
 					
 						setTimeout(function() {
 
-							self.options.wrapper.html(data.responseText);
+							self.options.wrapper.html(data.responseText).addClass('show');
 
 						}, 1000);
 
 					}
 				});
+
+			} else {
+				self.options.wrapper.addClass('show');
 			}
 
 			return this;
@@ -9949,7 +9992,33 @@ if( $('[data-copy-to-clipboard]').length ) {
 							var target = $this.attr('href'),
 								offset = ($this.is("[data-hash-offset]") ? $this.data('hash-offset') : 0),
 								delay  = ($this.is("[data-hash-delay]") ? $this.data('hash-delay') : 0),
-								force  = ($this.is("[data-hash-force]") ? true : false);
+								force  = ($this.is("[data-hash-force]") ? true : false),
+								windowWidth = $(window).width();
+
+							// Hash Offset SM
+							if ($this.is("[data-hash-offset-sm]") && windowWidth > 576) {
+								offset = $this.data('hash-offset-sm');
+							}
+							
+							// Hash Offset MD
+							if ($this.is("[data-hash-offset-md]") && windowWidth > 768) {
+								offset = $this.data('hash-offset-md');
+							}
+							
+							// Hash Offset LG
+							if ($this.is("[data-hash-offset-lg]") && windowWidth > 992) {
+								offset = $this.data('hash-offset-lg');
+							}
+							
+							// Hash Offset XL
+							if ($this.is("[data-hash-offset-xl]") && windowWidth > 1200) {
+								offset = $this.data('hash-offset-xl');
+							}
+							
+							// Hash Offset XXL
+							if ($this.is("[data-hash-offset-xxl]") && windowWidth > 1400) {
+								offset = $this.data('hash-offset-xxl');
+							}
 
 							if( !$(target).length ) {
 								target = target.split('#');
@@ -10078,8 +10147,9 @@ if( $('[data-copy-to-clipboard]').length ) {
 				return this;
 			},
 
-			scrollToTarget: function(target, offset, stopFlag) {
-				var self = this;
+			scrollToTarget: function(target, offset) {
+				var self = this,
+					targetPosition = $(target).offset().top;
 
 				$('body').addClass('scrolling');
 
@@ -10090,11 +10160,8 @@ if( $('[data-copy-to-clipboard]').length ) {
 
 					// If by some reason the scroll finishes in a wrong position, this code will run the scrollToTarget() again until get the correct position
 					// We need do it just one time to prevent infinite recursive loop at scrollToTarget() function
-					if( !theme.fn.isElementInView( $(target) ) ) {
-						if( stopFlag == false ) {
-							self.scrollToTarget( target, offset, false );
-							stopFlag = true;
-						}
+					if( $(target).offset().top !=  targetPosition) {
+						self.scrollToTarget( target, offset );
 					}
 				});
 
