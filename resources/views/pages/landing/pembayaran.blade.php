@@ -33,7 +33,6 @@
                             Kode Pesanan : #asdabc90
                         </div>
                         <div style="text-align: center">
-
                             <p class="mb-0">Silahkan Transfer ke :</p>
                             <h4 class="mb-0"> BNI Syariah : 8880806213</h4>
                             <p><b>A.N ITSAFQU</b></p>
