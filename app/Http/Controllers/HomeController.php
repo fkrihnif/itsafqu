@@ -57,7 +57,7 @@ class HomeController extends Controller
     }
     public function Dashboard()
     {
-        return view('pages.users.dashboard', ["title" => "Dashboard"]);
+        return view('pages.admin.dashboard', ["title" => "Dashboard"]);
         //asdsad
     }
 }

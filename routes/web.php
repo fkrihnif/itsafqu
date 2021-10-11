@@ -21,6 +21,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
             ->name('dashboard');
+        Route::resource('produk', '\App\Http\Controllers\Admin\ProductController');
     });
 
 

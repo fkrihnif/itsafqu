@@ -1,4 +1,4 @@
-@extends('layouts.landing.main2')
+@extends('layouts.landing.main')
 
 @section('container')
 

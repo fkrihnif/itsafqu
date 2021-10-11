@@ -565,7 +565,7 @@
                                 <a href=""><button type="button"
                                         class="btn btn-info btn-sm mb-2">Pesan</button></a>
                                 <a href=""><button type="button"
-                                        class="btn btn-warning btn-sm mb-2">Preview</button></a>
+                                        class="btn btn-dark btn-sm mb-2">Preview</button></a>
                             </div>
                         </div>
                     </div>
@@ -654,7 +654,7 @@
             <div class="row">
                 <div class="col text-center">
                     <a data-hash data-hash-offset="95" href="{{ route('template') }}"
-                        class="btn btn-light btn-outline btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 appear-animation"
+                        class="btn btn-light btn-outline btn-rounded font-weight-semibold text-3 btn-px-5 btn-py-2 appear-animation text-color-hover-dark"
                         data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200"
                         style="color: white">Lihat Selengkapnya</a>
                 </div>

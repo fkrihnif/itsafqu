@@ -1,30 +1,17 @@
-<header id="header" class="header-effect-shrink header-transparent" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 30, 'stickyHeaderContainerHeight': 70}">
-			<div class="header-body header-body-bottom-border border-top-0 appear-animation"
-				data-appear-animation="fadeIn">
-				<div class="header-container container">
-					<div class="header-row">
-						<div class="header-column">
+		<header id="header" class="header header-nav-links header-nav-menu header-black"
+			data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': false, 'stickyEnableOnMobile': true, 'stickyStartAt': 70, 'stickyChangeLogo': false, 'stickyHeaderContainerHeight': 70}">
+			<div class="header-body border-top-0 bg-dark box-shadow-none">
+				<div class="header-container container h-100">
+					<div class="header-row h-100">
+						<div class="header-column justify-content-center">
 							<div class="header-row">
 								<div class="header-logo">
-									<a href="demo-startup-agency.html">
-										<img src="{{ url('frontend/img/logo2baru.png') }}" class="img-fluid" width="123" height="55" alt="" />
-									</a>
+									<a href="#" class="goto-top"><img alt="Porto" width="102" height="45"
+											data-sticky-width="82" data-sticky-height="36" data-sticky-top="0"
+											src="{{ url('frontend/img/logo2baru.png') }}" data-plugin-lazyload
+											data-plugin-options="{'threshold': 500}"
+											data-original="{{ url('frontend/img/logo2baru.png') }}"></a>
 								</div>
-							</div>
-						</div>
-						<div class="header-column justify-content-end">
-							<div class="header-row">
-								<div
-									class="header-nav header-nav-line header-nav-bottom-line header-nav-bottom-line-effect-1">
-									<div
-										class="header-nav-main header-nav-main-text-capitalize header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
-                                        @include('layouts.landing.nav2')
-									</div>
-								</div>
-								<button class="btn header-btn-collapse-nav" data-bs-toggle="collapse"
-									data-bs-target=".header-nav-main nav">
-									<i class="fas fa-bars"></i>
-								</button>
 							</div>
 						</div>
 					</div>
