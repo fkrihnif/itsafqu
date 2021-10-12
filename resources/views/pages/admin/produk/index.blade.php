@@ -21,7 +21,6 @@
                 @endif
                 
                 <table class="table table-bordered table-striped mb-0" id="datatable-default">
-
                     <thead>
                         <tr>
                             <th>No</th>
