@@ -921,6 +921,60 @@ Theme Version: 	4.0.0
 		});
 	});
 
+
+	// Tambahan Sendiri
+	// LOGIN :
+	$('#login').on('click', function () {
+		if (!$('#username').val() || !$('#password').val()) {
+			var notice = new PNotify({
+				title: 'Field Kosong',
+				text: 'Harap isi Semua Field yang Kosong!',
+				addclass: 'notification-warning stack-bar-bottom',
+				icon: 'fas fa-exclamation',
+				stack: stack_bar_bottom,
+				width: "70%"
+			});
+			return false;
+		}
+	});
+
+	// REGISTER :
+	$('#form-register').on('submit', function () {
+		if (!$('#name').val() || !$('#email').val() || !$('#password').val() || !$('#passwordC').val()) {
+			var notice = new PNotify({
+				title: 'Field Kosong',
+				text: 'Harap isi Semua Field yang Kosong!',
+				addclass: 'notification-warning stack-bar-bottom',
+				icon: 'fas fa-exclamation',
+				stack: stack_bar_bottom,
+				width: "70%"
+			});
+			return false;
+		}
+		if ($('#password').val().length < 6) {
+			var notice = new PNotify({
+				title: 'Password tidak valid',
+				text: 'Password Minimal harus terdiri dari 6 karakter!',
+				addclass: 'notification-warning stack-bar-bottom',
+				icon: 'fas fa-exclamation',
+				stack: stack_bar_bottom,
+				width: "70%"
+			});
+			return false;
+		}
+		if ($('#password').val() != $('#passwordC').val()) {
+			var notice = new PNotify({
+				title: 'Konfirmasi Salah',
+				text: 'Konfirmasi Password Salah/Tidak Sesuai!',
+				addclass: 'notification-warning stack-bar-bottom',
+				icon: 'fas fa-exclamation',
+				stack: stack_bar_bottom,
+				width: "70%"
+			});
+			return false;
+		}
+	});
+
 	/*
 	Desktop Notifications Code
 	*/

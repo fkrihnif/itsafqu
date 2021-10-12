@@ -28,6 +28,7 @@
 		<link rel="stylesheet" href="{{ asset('user/vendor/jquery-ui/jquery-ui.theme.css') }}" />
 		<link rel="stylesheet" href="{{ asset('user/vendor/bootstrap-multiselect/css/bootstrap-multiselect.css') }}" />
 		<link rel="stylesheet" href="{{ asset('user/vendor/morris/morris.css') }}" />
+		<link rel="stylesheet" href="{{ asset('user/vendor/pnotify/pnotify.custom.css') }}" />
 
 		<!-- Theme CSS -->
         <link rel="stylesheet" href="{{ asset('user/css/theme.css') }}" />
@@ -48,7 +49,14 @@
         </style>
 
 	</head>
-	<body class="belakang">
+	<body class="belakang loading-overlay-showing" data-loading-overlay>
+		<div class="loading-overlay">
+			<div class="bounce-loader">
+				<div class="bounce1"></div>
+				<div class="bounce2"></div>
+				<div class="bounce3"></div>
+			</div>
+		</div>
         <div class="bg1"></div>
         <div class="bg1 bg2"></div>
         <div class="bg1 bg3"></div>
@@ -73,6 +81,7 @@
         <script src="{{ asset('user/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
 
 		<!-- Specific Page Vendor -->
+		<script src="{{ asset('user/vendor/pnotify/pnotify.custom.js') }}"></script>
 
 		<!-- Theme Base, Components and Settings -->
         <script src="{{ asset('user/js/theme.js') }}"></script>
@@ -82,6 +91,8 @@
 
 		<!-- Theme Initialization Files -->
         <script src="{{ asset('user/js/theme.init.js') }}"></script>
+		<script src="{{ asset('user/js/examples/examples.notifications.js') }}"></script>
+		<script src="{{ asset('user/js/examples/examples.loading.overlay.js') }}"></script>
 
 	</body>
 </html>

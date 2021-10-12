@@ -51,11 +51,6 @@ class HomeController extends Controller
         return view('pages.landing.templateGambar.template1');
         //asdsad
     }
-    public function Login()
-    {
-        return view('pages.login');
-        //asdsad
-    }
     public function Register()
     {
         return view('pages.register');
@@ -64,6 +59,16 @@ class HomeController extends Controller
     public function Dashboard()
     {
         return view('pages.admin.dashboard', ["title" => "Dashboard"]);
+        //asdsad
+    }
+    public function DashboardU()
+    {
+        return view('pages.users.dashboard', ["title" => "Dashboard"]);
+        //asdsad
+    }
+    public function MyOrders()
+    {
+        return view('pages.users.myorders', ["title" => "Dashboard"]);
         //asdsad
     }
 }

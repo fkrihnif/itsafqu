@@ -37,5 +37,7 @@ Route::get('/templateGambar', [HomeController::class, 'gambar'])->name('gambar')
 Route::get('/Login', [HomeController::class, 'Login'])->name('login');
 Route::get('/Register', [HomeController::class, 'Register'])->name('register');
 Route::get('/Dashboard', [HomeController::class, 'Dashboard'])->name('dashboard');
+Route::get('/DashboardUser', [HomeController::class, 'DashboardU'])->name('dashboardu');
+Route::get('/PesananUser', [HomeController::class, 'MyOrders'])->name('myorders');
 
 Auth::routes();
