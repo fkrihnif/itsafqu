@@ -27,6 +27,35 @@
                             <span>Produk</span>
                         </a>
                     </li>
+                    <li class="{{ Request::is('PesananUser') ? 'nav-active' : '' }}">
+                        <a class="nav-link" href="/PesananUser">
+                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                            <span>Pesanan Saya</span>
+                        </a>
+                    </li>
+                    <li class="nav-parent {{ Request::is('ProdukPaket') || Request::is('ProdukSingle')? 'nav-expanded nav-active' : '' }}">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-laptop-house"></i>
+                            <span>Our Product</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="{{ Request::is('ProdukPaket') ? 'nav-active' : '' }}">
+                                <a class="nav-link" href="/ProdukPaket">
+                                    Paket Undangan
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('ProdukSingle')? 'nav-active' : '' }}">
+                                <a class="nav-link" href="/ProdukSingle">
+                                    Single Item
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="ecommerce-products-form.html">
+                                    Products Form
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>

@@ -33,6 +33,12 @@
 	<link rel="stylesheet" href="{{ url('user/vendor/select2/css/select2.css') }}" />
 	<link rel="stylesheet" href="{{ url('user/vendor/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
 
+	{{-- Jika ke halaman ProdukPaket --}}
+	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle'))
+	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.carousel.css') }}" />
+	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.theme.default.css') }}" />
+	@endif
+
 
 	<!-- Theme CSS -->
 	<link rel="stylesheet" href="{{ url('user/css/theme.css') }}" />
@@ -111,7 +117,8 @@
 	<script src="{{ url('user/vendor/gauge/gauge.js') }}"></script>
 	<script src="{{ url('user/vendor/snap.svg/snap.svg.js') }}"></script>
 	<script src="{{ url('user/vendor/liquid-meter/liquid.meter.js') }}"></script>
-
+	<script src="{{ url('user/vendor/pnotify/pnotify.custom.js') }}"></script>
+	
 	
 	<!-- Specific Page Vendor -->
 	<script src="{{ url('user/vendor/select2/js/select2.js') }}"></script>
@@ -124,8 +131,40 @@
 	<script src="{{ url('user/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js') }}"></script>
 	<script src="{{ url('user/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js') }}"></script>
 	<script src="{{ url('user/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js') }}"></script>
+	<script src="{{ asset('user/vendor/isotope/isotope.js') }}"></script>
 
+	{{-- Jika halaman Dashboard --}}
+	@if (Request::is('Dashboard') || Request::is('Dashboard'))
+	<!-- Theme Base, Components and Settings -->
+	<script src="{{ asset('user/vendor/raphael/raphael.js') }}"></script>
+	<script src="{{ asset('user/vendor/morris/morris.js') }}"></script>
+	<script src="{{ asset('user/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('user/vendor/datatables/media/js/dataTables.bootstrap5.min.js') }}"></script>
 
+	<!-- Examples -->
+	<script src="{{ asset('user/js/examples/examples.header.menu.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.ecommerce.dashboard.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.ecommerce.datatables.list.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.datatables.editable.js') }}"></script>
+	@endif
+
+	{{-- Jika Halaman Pesanan User --}}
+	@if (Request::is('PesananUser'))
+	<script src="{{ asset('user/vendor/select2/js/select2.js') }}"></script>
+	<script src="{{ asset('user/vendor/pnotify/pnotify.custom.js') }}"></script>
+	
+	<script src="{{ asset('user/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('user/vendor/datatables/media/js/dataTables.bootstrap5.min.js') }}"></script>
+	
+	<script src="{{ asset('user/js/examples/examples.datatables.editable.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.modals.js') }}"></script>
+	@endif
+
+	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle'))
+	<script src="{{ asset('user/vendor/owl.carousel/owl.carousel.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.mediagallery.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.lightbox.js') }}"></script>
+	@endif
 
 	<!-- Examples -->
 	<script src="{{ url('user/js/examples/examples.datatables.default.js') }}"></script>
@@ -146,29 +185,6 @@
 	<script src="{{ url('user/js/examples/examples.notifications.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.loading.overlay.js') }}"></script>
 
-	{{-- Jika halaman Dashboard --}}
-	@if (Request::is('Dashboard') || Request::is('Dashboard'))
-	<!-- Theme Base, Components and Settings -->
-	<script src="{{ asset('user/vendor/raphael/raphael.js') }}"></script>
-	<script src="{{ asset('user/vendor/morris/morris.js') }}"></script>
-	<script src="{{ asset('user/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('user/vendor/datatables/media/js/dataTables.bootstrap5.min.js') }}"></script>
-
-	<!-- Examples -->
-	<script src="{{ asset('user/js/examples/examples.header.menu.js') }}"></script>
-	<script src="{{ asset('user/js/examples/examples.ecommerce.dashboard.js') }}"></script>
-	<script src="{{ asset('user/js/examples/examples.ecommerce.datatables.list.js') }}"></script>
-	<script src="js/examples/examples.datatables.editable.js"></script>
-	@endif
-
-	{{-- Jika Halaman Pesanan User --}}
-	@if (Request::is('PesananUser'))
-	<script src="{{ asset('user/vendor/select2/js/select2.js') }}"></script>
-	<script src="{{ asset('user/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('user/vendor/datatables/media/js/dataTables.bootstrap5.min.js') }}"></script>
-	
-	<script src="{{ asset('user/js/examples/examples.datatables.editable.js') }}"></script>
-	@endif
 
 </body>
 

@@ -52,7 +52,7 @@
                                 <span>30 days</span>
                             </div>
                             <div class="col-md-4 text-left text-md-right pe-md-4 mt-4 mt-md-0 d-flex justify-content-end">
-                                <a href="" class="btn btn-danger text-color-hover-dark"><i class="fas fa-eye"></i> Lihat</a>
+                                <a href="/PesananUser" class="btn btn-danger text-color-hover-dark"><i class="fas fa-eye"></i> Lihat</a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                 <span>30 days</span>
                             </div>
                             <div class="col-md-4 text-left text-md-right pe-md-4 mt-4 mt-md-0 d-flex justify-content-end">
-                                <a href="" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
+                                <a href="/ProdukPaket" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                 <span>30 days</span>
                             </div>
                             <div class="col-md-4 text-left text-md-right pe-md-4 mt-4 mt-md-0 d-flex justify-content-end">
-                                <a href="" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
+                                <a href="/ProdukSingle" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
                             </div>
                         </div>
                     </div>
