@@ -15,7 +15,7 @@
             <nav id="menu" class="nav-main" role="navigation">
 
                 <ul class="nav nav-main">
-                    <li>
+                    <li class="{{ Request::is('Dashboard') || Request::is('DashboardUser') ? 'nav-active' : '' }}">
                         <a class="nav-link" href="{{ route('dashboard') }}">
                             <i class="bx bx-home-alt" aria-hidden="true"></i>
                             <span>Dashboard</span>

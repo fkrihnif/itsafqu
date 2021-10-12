@@ -56,7 +56,14 @@
 
 </head>
 
-<body>
+<body class="loading-overlay-showing" data-loading-overlay>
+	<div class="loading-overlay">
+		<div class="bounce-loader">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+	</div>
 	<section class="body">
 
 		<!-- start: header -->
@@ -78,7 +85,7 @@
 
 	<!-- Vendor -->
 	<script src="{{ url('user/vendor/jquery/jquery.js') }}"></script>
-	<script src="{{ url('user/vendor/jquery-browser-mobile/jquery.browser.mobile.js"') }}></script>
+	<script src="{{ url('user/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
 	<script src="{{ url('user/vendor/popper/umd/popper.min.js') }}"></script>
 	<script src="{{ url('user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 	<script src="{{ url('user/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
@@ -136,6 +143,32 @@
 
 	<!-- Examples -->
 	<script src="{{ url('user/js/examples/examples.dashboard.js') }}"></script>
+	<script src="{{ url('user/js/examples/examples.notifications.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.loading.overlay.js') }}"></script>
+
+	{{-- Jika halaman Dashboard --}}
+	@if (Request::is('Dashboard') || Request::is('Dashboard'))
+	<!-- Theme Base, Components and Settings -->
+	<script src="{{ asset('user/vendor/raphael/raphael.js') }}"></script>
+	<script src="{{ asset('user/vendor/morris/morris.js') }}"></script>
+	<script src="{{ asset('user/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('user/vendor/datatables/media/js/dataTables.bootstrap5.min.js') }}"></script>
+
+	<!-- Examples -->
+	<script src="{{ asset('user/js/examples/examples.header.menu.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.ecommerce.dashboard.js') }}"></script>
+	<script src="{{ asset('user/js/examples/examples.ecommerce.datatables.list.js') }}"></script>
+	<script src="js/examples/examples.datatables.editable.js"></script>
+	@endif
+
+	{{-- Jika Halaman Pesanan User --}}
+	@if (Request::is('PesananUser'))
+	<script src="{{ asset('user/vendor/select2/js/select2.js') }}"></script>
+	<script src="{{ asset('user/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('user/vendor/datatables/media/js/dataTables.bootstrap5.min.js') }}"></script>
+	
+	<script src="{{ asset('user/js/examples/examples.datatables.editable.js') }}"></script>
+	@endif
 
 </body>
 
