@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InvitationType;
+use App\Models\Template;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('pages.landing.landing');
-        //asdsad
+        $types = InvitationType::all();
+        $products = Template::limit(4)->get();
+        return view('pages.landing.landing', [
+            'products' => $products,
+            'types' => $types
+        ]);
     }
 
     public function template()

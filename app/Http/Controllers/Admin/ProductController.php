@@ -88,7 +88,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Template::findOrFail($id);
+        return view('pages.admin.produk.edit', ['item' => $item]);
     }
 
     /**
@@ -100,7 +101,31 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Template::findOrFail($id);
+
+        \Validator::make($request->all(), [
+            "invitation_types_id" => "required",
+            "nama" => "required",
+            "harga" => "required",
+            "deskripsi" => "required",
+        ]);
+        $product->invitation_types_id = $request->get('invitation_types_id');
+        $product->nama = $request->get('nama');
+        $product->harga = $request->get('harga');
+        $product->deskripsi = $request->get('deskripsi');
+        $product->link = $request->get('link');
+
+        if ($request->file('thumbnail')) {
+            if ($product->thumbnail && file_exists(storage_path('app/public/' . $product->thumbnail))) {
+                \Storage::delete('public' . $product->thumbnail);
+            }
+            $thumbnail_file = $request->file('thumbnail')->store('thumbnail', 'public');
+            $product->thumbnail = $thumbnail_file;
+        }
+
+        $product->save();
+
+        return redirect()->route('carousel.index')->with('status', 'Data successfully updated');
     }
 
     /**

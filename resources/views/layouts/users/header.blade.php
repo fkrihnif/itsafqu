@@ -23,8 +23,8 @@
                         data-lock-picture="{{ url('user/img/!logged-user.jpg') }}" />
                 </figure>
                 <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-                    <span class="name">John Doe Junior</span>
-                    <span class="role">Administrator</span>
+                    <span class="name">{{ Auth::user()->name }}</span>
+                    <span class="role">{{ Auth::user()->roles }}</span>
                 </div>
 
                 <i class="fa custom-caret"></i>
@@ -42,8 +42,7 @@
                                 class="bx bx-power-off"></i> Logout</a> --}}
                                 <form action="{{ url('logout') }}" method="POST">
                                     @csrf
-                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <button class="btn btn-primary" type="submit">Logout</button>
+                                    <button class="btn btn-danger btn-sm" type="submit">Logout</button>
                                 </form>
                     </li>
 

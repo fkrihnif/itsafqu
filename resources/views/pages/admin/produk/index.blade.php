@@ -29,7 +29,7 @@
                             <th>Nama</th>
                             <th>Harga</th>
                             <th>Thumbnail</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,13 +45,10 @@
                             <td><img src="{{ Storage::url($t->thumbnail) }}" alt="{{ $t->nama }}"
                                     width="200px" class="img-thumbnail"></td>
                             <td>
-                                <a href="" class="btn btn-info">
+                                <a href="{{ route('produk.edit', $t->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <a href="" class="btn btn-info">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                                <form action="" method="POST"
+                                <form action="{{ route('produk.destroy', $t->id) }}" method="POST"
                                     class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')

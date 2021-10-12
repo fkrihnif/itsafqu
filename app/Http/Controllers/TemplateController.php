@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\InvitationType;
+use App\Models\Template;
 
 class TemplateController extends Controller
 {
@@ -13,7 +15,14 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        return view('pages.templates');
+        $a = 'pages.landing.';
+        $a .= 'product';
+        $types = InvitationType::all();
+        $products = Template::all();
+        return view($a, [
+            'products' => $products,
+            'types' => $types
+        ]);
     }
 
     /**
@@ -45,7 +54,13 @@ class TemplateController extends Controller
      */
     public function show($id)
     {
-        //
+        $template = Template::where('id', $id)
+            ->firstOrFail();
+
+        $a = 'pages.landing.templateWeb.';
+        $a .= $template->link;
+
+        return view($a);
     }
 
     /**

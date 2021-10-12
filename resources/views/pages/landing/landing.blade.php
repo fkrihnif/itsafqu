@@ -528,36 +528,28 @@
                 data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
                 <li class="nav-item active" data-option-value="*"><a class="nav-link text-1 text-uppercase active"
                         href="#" style="color: white">Show All</a></li>
-                <li class="nav-item" data-option-value=".websites"><a class="nav-link text-1 text-uppercase" href="#"
-                        style="color: white">Websites</a></li>
-                <li class="nav-item" data-option-value=".logos"><a class="nav-link text-1 text-uppercase" href="#"
-                        style="color: white">Video</a></li>
-                <li class="nav-item" data-option-value=".brands"><a class="nav-link text-1 text-uppercase" href="#"
-                        style="color: white">Gambar</a></li>
+                @foreach ($types as $type)
+                <li class="nav-item" data-option-value=".{{ $type->jenis_undangan }}"><a class="nav-link text-1 text-uppercase" href="#"
+                        style="color: white">{{ $type->jenis_undangan }}</a></li>
+                @endforeach
             </ul>
 
             <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
                 <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-
-                    <div class="col-sm-4 col-lg-3 isotope-item websites">
+                    @foreach ($products as $product)
+                    <div class="col-sm-4 col-lg-3 isotope-item {{ $product->invitation_type['jenis_undangan'] }}">
                         <div class="portfolio-item">
                             <a href="/templateWeb" target="_blank">
                                 <span class="thumb-info thumb-info-lighten border-radius-0">
                                     <span class="thumb-info-wrapper gambar border-radius-0">
-                                        <img src="frontend/img/web/Asset 14.png"
-                                            class="img-fluid border-radius-0 plugin-random-images"
-                                            data-plugin-random-images
-                                            data-plugin-options="{'imagesListURL': ['frontend/img/web/Asset 14.png', 'frontend/img/web/Asset 14.png'], 'delay': 3000}"
-                                            alt="">
+                                        <img src="{{ Storage::url($product->thumbnail) }}"
+                                            class="img-fluid border-radius-0"
+                                            alt="" style="height: 320px">
 
                                         <span class="thumb-info-title">
-                                            <span class="thumb-info-inner">Template W1</span>
-                                            <span class="thumb-info-type">Website</span>
+                                            <span class="thumb-info-inner">{{ $product->nama }}</span>
+                                            <span class="thumb-info-type">{{ $product->invitation_type['jenis_undangan'] }}</span>
                                         </span>
-                                        {{-- <span class="thumb-info-action">
-                                            <span class="thumb-info-action-icon bg-dark opacity-8"><i
-                                                    class="fas fa-plus"></i></span>
-                                        </span> --}}
                                     </span>
                                 </span>
                             </a>
@@ -569,86 +561,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4 col-lg-3 isotope-item websites">
-                        <div class="portfolio-item">
-                            <a href="portfolio-single-wide-slider.html">
-                                <span class="thumb-info thumb-info-lighten border-radius-0">
-                                    <span class="thumb-info-wrapper gambar border-radius-0">
-                                        <img src="frontend/img/web/Asset 13.png"
-                                            class="img-fluid border-radius-0 plugin-random-images"
-                                            data-plugin-random-images
-                                            data-plugin-options="{'imagesListURL': ['frontend/img/web/Asset 13.png', 'frontend/img/web/Asset 13.png'], 'delay': 5000, 'animateIn': 'blurIn', 'animateOut': 'fadeOut'}"
-                                            alt="">
-
-                                        <span class="thumb-info-title">
-                                            <span class="thumb-info-inner">Template W2</span>
-                                            <span class="thumb-info-type">Website</span>
-                                        </span>
-                                    </span>
-                                </span>
-                            </a>
-                            <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
-                                <a href=""><button type="button"
-                                        class="btn btn-info btn-sm mb-2">Pesan</button></a>
-                                <a href=""><button type="button"
-                                        class="btn btn-warning btn-sm mb-2">Preview</button></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-3 isotope-item brands">
-                        <div class="portfolio-item">
-                            <a href="/templateGambar" target="_blank">
-                                <span class="thumb-info thumb-info-lighten border-radius-0">
-                                    <span class="thumb-info-wrapper gambar border-radius-0">
-                                        <img src="frontend/img/gambar/1a.jpg"
-                                            class="img-fluid border-radius-0 plugin-random-images"
-                                            data-plugin-random-images
-                                            data-plugin-options="{'imagesListURL': ['frontend/img/gambar/1b.jpg'], 'delay': 3000, 'animateIn': 'blurIn', 'animateOut': 'fadeOut'}"
-                                            alt="">
-
-                                        <span class="thumb-info-title">
-                                            <span class="thumb-info-inner">Template G1</span>
-                                            <span class="thumb-info-type">Gambar</span>
-                                        </span>
-                                    </span>
-                                </span>
-                            </a>
-                            <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
-                                <a href=""><button type="button"
-                                        class="btn btn-info btn-sm mb-2">Pesan</button></a>
-                                <a href=""><button type="button"
-                                        class="btn btn-warning btn-sm mb-2">Preview</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 col-lg-3 isotope-item brands">
-                        <div class="portfolio-item">
-                            <a href="portfolio-single-wide-slider.html">
-                                <span class="thumb-info thumb-info-lighten border-radius-0">
-                                    <span class="thumb-info-wrapper gambar border-radius-0">
-                                        <img src="frontend/img/gambar/3a.jpg"
-                                            class="img-fluid border-radius-0 plugin-random-images"
-                                            data-plugin-random-images
-                                            data-plugin-options="{'imagesListURL': ['frontend/img/gambar/3b.jpg'], 'delay': 3000, 'animateIn': 'blurIn', 'animateOut': 'fadeOut'}"
-                                            alt="">
-
-                                        <span class="thumb-info-title">
-                                            <span class="thumb-info-inner">Template V1</span>
-                                            <span class="thumb-info-type">Gambar</span>
-                                        </span>
-                                    </span>
-                                </span>
-                            </a>
-                            <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
-                                <a href=""><button type="button"
-                                        class="btn btn-info btn-sm mb-2">Pesan</button></a>
-                                <a href=""><button type="button"
-                                        class="btn btn-warning btn-sm mb-2">Preview</button></a>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
             </div>
             <div class="row">
