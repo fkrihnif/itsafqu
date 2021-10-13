@@ -35,6 +35,11 @@ class HomeController extends Controller
         return view('pages.landing.form2');
         //asdsad
     }
+    public function formTempate()
+    {
+        return view('pages.users.formTemplate');
+        //asdsad
+    }
 
     public function pembayaran()
     {
@@ -69,6 +74,21 @@ class HomeController extends Controller
     public function MyOrders()
     {
         return view('pages.users.myorders', ["title" => "Dashboard"]);
+        //asdsad
+    }
+    public function Paket()
+    {
+        return view('pages.users.paket', ["title" => "Dashboard"]);
+        //asdsad
+    }
+    public function Single()
+    {
+        return view('pages.users.single', ["title" => "Dashboard"]);
+        //asdsad
+    }
+    public function Team()
+    {
+        return view('pages.users.team', ["title" => "Dashboard"]);
         //asdsad
     }
 }

@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="{{ url('user/vendor/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
 
 	{{-- Jika ke halaman ProdukPaket --}}
-	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle'))
+	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle') || Request::is('formTemplate'))
 	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.carousel.css') }}" />
 	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.theme.default.css') }}" />
 	@endif
@@ -133,6 +133,14 @@
 	<script src="{{ url('user/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js') }}"></script>
 	<script src="{{ asset('user/vendor/isotope/isotope.js') }}"></script>
 
+	{{-- Jika halaman FOrm pilih Template --}}
+	@if (Request::is('formTemplate'))
+	<script src="{{ asset('user/vendor/jquery-validation/jquery.validate.js') }}"></script>
+	<script src="{{ asset('user/vendor/bootstrapv5-wizard/jquery.bootstrap.wizard.js') }}"></script>
+
+	<script src="{{ asset('user/js/examples/examples.wizard.js') }}"></script>
+	@endif
+
 	{{-- Jika halaman Dashboard --}}
 	@if (Request::is('Dashboard') || Request::is('Dashboard'))
 	<!-- Theme Base, Components and Settings -->
@@ -160,7 +168,7 @@
 	<script src="{{ asset('user/js/examples/examples.modals.js') }}"></script>
 	@endif
 
-	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle'))
+	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle') || Request::is('formTemplate'))
 	<script src="{{ asset('user/vendor/owl.carousel/owl.carousel.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.mediagallery.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.lightbox.js') }}"></script>
