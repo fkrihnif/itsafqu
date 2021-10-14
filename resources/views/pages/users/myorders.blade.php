@@ -46,9 +46,6 @@
                             <a href="#modalForm" class="modal-with-form btn btn-info">
                                 <i class="fa fa-pencil-alt"></i>
                             </a>
-                            <button class="btn btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
                         </div>
                     </td>
                 </tr>
@@ -72,6 +69,9 @@
                     <td><span class=" badge badge-info">MENUNGGU PEMBAYARAN</span></td>
                         <td>
                             <div class=" btn-group">
+                                <a href="#modalForm" class="modal-with-form btn btn-info">
+                                    <i class="fa fa-pencil-alt"></i>
+                                </a>
                                 <button class="btn btn-danger">
                                     <i class="fa fa-trash"></i>
                                 </button>
