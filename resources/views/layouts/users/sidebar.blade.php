@@ -16,17 +16,19 @@
 
                 <ul class="nav nav-main">
                     <li class="{{ Request::is('Dashboard') || Request::is('DashboardUser') ? 'nav-active' : '' }}">
-                        <a class="nav-link" href="{{ route('dashboard') }}">
+                        <a class="nav-link" href="{{ route('dashboard') }}"> {{-- href-nye disesuaikan (kalo admin kemane, kalo pelanggan kemane) --}}
                             <i class="bx bx-home-alt" aria-hidden="true"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    {{-- ini punya admin --}}
                     <li>
                         <a class="nav-link" href="{{ route('produk.index') }}">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Produk</span>
                         </a>
                     </li>
+                    {{-- ini punya pelanggan --}}
                     <li class="{{ Request::is('PesananUser') ? 'nav-active' : '' }}">
                         <a class="nav-link" href="/PesananUser">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
@@ -55,6 +57,12 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="{{ Request::is('Team')? 'nav-active' : '' }}">
+                        <a class="nav-link" href="/Team">
+                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                            <span>Our Team</span>
+                        </a>
                     </li>
                 </ul>
             </nav>
