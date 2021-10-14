@@ -192,8 +192,6 @@
 	<script src="{{ url('user/js/examples/examples.dashboard.js') }}"></script>
 	<script src="{{ url('user/js/examples/examples.notifications.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.loading.overlay.js') }}"></script>
-
-
 </body>
 
 </html>
