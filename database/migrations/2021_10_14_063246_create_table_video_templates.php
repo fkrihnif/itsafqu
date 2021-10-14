@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvitationTypesTable extends Migration
+class CreateTableVideoTemplates extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateInvitationTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invitation_types', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('jenis_undangan');
+        Schema::create('video_templates', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateInvitationTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invitation_types');
+        Schema::dropIfExists('video_templates');
     }
 }

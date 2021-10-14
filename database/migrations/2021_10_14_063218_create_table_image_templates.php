@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTemplatesTable extends Migration
+class CreateTableImageTemplates extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('templates', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('invitation_types_id');
-            $table->string('nama');
-            $table->string('harga');
-            $table->text('deskripsi');
+        Schema::create('image_templates', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('templates');
+        Schema::dropIfExists('image_templates');
     }
 }
