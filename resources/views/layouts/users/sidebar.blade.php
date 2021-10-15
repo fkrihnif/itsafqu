@@ -15,22 +15,22 @@
             <nav id="menu" class="nav-main" role="navigation">
 
                 <ul class="nav nav-main">
-                    <li class="{{ Request::is('Dashboard') || Request::is('DashboardUser') ? 'nav-active' : '' }}">
-                        <a class="nav-link" href="{{ route('dashboard') }}"> {{-- href-nye disesuaikan (kalo admin kemane, kalo pelanggan kemane) --}}
+                    <li class="{{ Request::is('admin') || Request::is('DashboardUser') ? 'nav-active' : '' }}">
+                        <a class="nav-link {{ Request::is('admin') || Request::is('DashboardUser')? 'text-color-primary' : '' }}" href="{{ route('dashboard') }}"> {{-- href-nye disesuaikan (kalo admin kemane, kalo pelanggan kemane) --}}
                             <i class="bx bx-home-alt" aria-hidden="true"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     {{-- ini punya admin --}}
-                    <li>
-                        <a class="nav-link" href="{{ route('produk.index') }}">
+                    <li class="{{ Request::is('admin/produk')? 'nav-active' : '' }}">
+                        <a class="nav-link {{ Request::is('admin/produk')? 'text-color-primary' : '' }}" href="{{ route('produk.index') }}">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Produk</span>
                         </a>
                     </li>
                     {{-- ini punya pelanggan --}}
                     <li class="{{ Request::is('PesananUser') ? 'nav-active' : '' }}">
-                        <a class="nav-link" href="/PesananUser">
+                        <a class="nav-link {{ Request::is('PesananUser')? 'text-color-primary' : '' }}" href="/PesananUser">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Pesanan Saya</span>
                         </a>
@@ -59,8 +59,8 @@
                         </ul>
                     </li>
                     <li class="{{ Request::is('Team')? 'nav-active' : '' }}">
-                        <a class="nav-link" href="/Team">
-                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                        <a class="nav-link {{ Request::is('Team')? 'text-color-primary' : '' }}" href="/Team">
+                            <i class="fas fa-users"></i>
                             <span>Our Team</span>
                         </a>
                     </li>

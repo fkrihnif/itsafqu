@@ -22,11 +22,11 @@
                             <div class="widget-user-info-body">
                                 <div class="row">
                                     <div class="col-auto">
-                                        <strong class="text-color-dark text-5">$19.876,02</strong>
+                                        <strong class="text-color-dark text-5">Rp. 100.000</strong>
                                         <h3 class="text-4-1">Pendapatan</h3>
                                     </div>
                                     <div class="col-auto">
-                                        <strong class="text-color-dark text-5">637</strong>
+                                        <strong class="text-color-dark text-5">23</strong>
                                         <h3 class="text-4-1">Total Produk</h3>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                         <div class="row align-items-center">
                             <div class="col-6 col-md-4">
                                 <h3 class="text-4-1 my-0">Total Orders</h3>
-                                <strong class="text-6 text-color-dark">4825</strong>
+                                <strong class="text-6 text-color-dark">1</strong>
                             </div>
                             <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
                                 <h3 class="text-4-1 text-color-success line-height-2 my-0">Orders <strong>UP &uarr;</strong></h3>
@@ -67,7 +67,7 @@
                         <div class="row align-items-center">
                             <div class="col-6 col-md-4">
                                 <h3 class="text-4-1 my-0">Average Price</h3>
-                                <strong class="text-6 text-color-dark">$39,03</strong>
+                                <strong class="text-6 text-color-dark">Rp. 100.000</strong>
                             </div>
                             <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
                                 <h3 class="text-4-1 text-color-danger line-height-2 my-0">Price <strong>DOWN &darr;</strong></h3>
@@ -96,15 +96,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-auto">
-                                <strong class="text-color-dark text-6">$19.876,02</strong>
+                                <strong class="text-color-dark text-6">Rp. 0</strong>
                                 <h3 class="text-4 mt-0 mb-2">This Month</h3>
                             </div>
                             <div class="col-auto">
-                                <strong class="text-color-dark text-6">$14.345,26</strong>
+                                <strong class="text-color-dark text-6">Rp. 100.000</strong>
                                 <h3 class="text-4 mt-0 mb-2">Last Month</h3>
                             </div>
                             <div class="col-auto">
-                                <strong class="text-color-dark text-6">$119.876,02</strong>
+                                <strong class="text-color-dark text-6">Rp. 100.000</strong>
                                 <h3 class="text-4 mt-0 mb-2">Total Profit</h3>
                             </div>
                         </div>
@@ -410,70 +410,6 @@
                                 <td>Nov 27, 2019</td>
                                 <td>$50</td>
                                 <td><span class="ecommerce-status processing">Processing</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>198</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 8</strong></a></td>
-                                <td>Nov 28, 2019</td>
-                                <td>$879</td>
-                                <td><span class="ecommerce-status on-hold">On Hold</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>199</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 9</strong></a></td>
-                                <td>Nov 29, 2019</td>
-                                <td>$621</td>
-                                <td><span class="ecommerce-status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>200</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 10</strong></a></td>
-                                <td>Nov 30, 2019</td>
-                                <td>$245</td>
-                                <td><span class="ecommerce-status canceled">Canceled</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>201</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 11</strong></a></td>
-                                <td>Nov 11, 2019</td>
-                                <td>$178</td>
-                                <td><span class="ecommerce-status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>202</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 12</strong></a></td>
-                                <td>Nov 12, 2019</td>
-                                <td>$63</td>
-                                <td><span class="ecommerce-status canceled">Canceled</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>203</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 13</strong></a></td>
-                                <td>Nov 13, 2019</td>
-                                <td>$91</td>
-                                <td><span class="ecommerce-status on-hold">On Hold</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>204</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 14</strong></a></td>
-                                <td>Nov 14, 2019</td>
-                                <td>$568</td>
-                                <td><span class="ecommerce-status processing">Processing</span></td>
-                            </tr>
-                            <tr>
-                                <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>205</strong></a></td>
-                                <td><a href="ecommerce-orders-detail.html"><strong>Customer Name Example 15</strong></a></td>
-                                <td>Nov 15, 2019</td>
-                                <td>$796</td>
-                                <td><span class="ecommerce-status on-hold">On Hold</span></td>
                             </tr>
                             <tr>
                                 <td width="30"><input type="checkbox" name="checkboxRow1" class="checkbox-style-1 p-relative top-2" value="" /></td>

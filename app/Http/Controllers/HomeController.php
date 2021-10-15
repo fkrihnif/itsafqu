@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('pages.landing.form2');
         //asdsad
     }
-    public function formTempate()
+    public function formTemplate()
     {
         return view('pages.users.formTemplate');
         //asdsad
@@ -59,11 +59,6 @@ class HomeController extends Controller
     public function Register()
     {
         return view('pages.register');
-        //asdsad
-    }
-    public function Dashboard()
-    {
-        return view('pages.admin.dashboard', ["title" => "Dashboard"]);
         //asdsad
     }
     public function DashboardU()

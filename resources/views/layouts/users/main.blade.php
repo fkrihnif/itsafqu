@@ -142,7 +142,7 @@
 	@endif
 
 	{{-- Jika halaman Dashboard --}}
-	@if (Request::is('Dashboard') || Request::is('Dashboard'))
+	@if (Request::is('Dashboard') || Request::is('admin'))
 	<!-- Theme Base, Components and Settings -->
 	<script src="{{ asset('user/vendor/raphael/raphael.js') }}"></script>
 	<script src="{{ asset('user/vendor/morris/morris.js') }}"></script>
@@ -192,6 +192,8 @@
 	<script src="{{ url('user/js/examples/examples.dashboard.js') }}"></script>
 	<script src="{{ url('user/js/examples/examples.notifications.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.loading.overlay.js') }}"></script>
+
+
 </body>
 
 </html>
