@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Carousel</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Produk-Web</h1>
     </div>
 
     @if ($errors->any())
@@ -20,16 +20,16 @@
 
     <div class="card shadow">
         <div class="card-body">
-            <form action="{{ route('produk.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('produk-web.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
+                @method('put')
                 <div class="form-group">
-                    <label for="invitation_types_id"><strong>Jenis Produk</strong></label>
-                    <select name="invitation_types_id" required class="form-control">
-                        <option value="">--- Pilih Produk ---</option>
-                        @foreach ($types as $type)
-                        <option value="{{ $type->id }}">
-                            {{ $type->jenis_undangan }}
+                    <label for="packages_id"><strong>Jenis Paket</strong></label>
+                    <select name="packages_id" required class="form-control">
+                        <option value="{{ $item->packages_id }}">{{ $item->packages['nama_paket'] }}</option>
+                        @foreach ($packages as $p)
+                        <option value="{{ $p->id }}">
+                            {{ $p->nama_paket }}
                         </option>
                         @endforeach
                     </select>
@@ -38,32 +38,36 @@
                 <div class="form-group">
                     <label for="nama"><strong>Nama</strong></label>
                     <input type="text" name="nama" class="form-control" placeholder=""
-                        value="{{ old('nama') }}" required autocomplete="off">
+                        value="{{ $item->nama }}" required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="harga"><strong>Harga</strong></label>
                     <input type="number" name="harga" class="form-control" placeholder=""
-                        value="{{ old('harga') }}" required autocomplete="off">
+                        value="{{ $item->harga }}" required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="deskripsi"><strong>Deskripsi</strong></label>
                     <textarea type="text" name="deskripsi" id="deskripsi" class="form-control"
                         placeholder="Input deskripsi carousel" required
-                        autocomplete="off">{{ old('deskripsi') }}</textarea>
+                        autocomplete="off">{{ $item->deskripsi }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="thumbnail"><strong>Upload thumbnail:</strong> <i>(maks: 3MB|jpeg,png,jpg,svg)</i></label>
+                    <label for="thumbnail"><strong>Upload thumbnail:</strong> <i>(jpeg,png,jpg,svg)</i></label>
                     <input class="form-control-file" type="file" name="thumbnail" id="thumbnail"
-                     required>
+                     >
                 </div>
+
+                <div class="website" id="website">
                 <div class="form-group">
                     <label for="link"><strong>Link</strong></label>
                     <input type="text" name="link" class="form-control" placeholder=""
-                        value="{{ old('link') }}" required autocomplete="off">
+                        value="{{ $item->link }}" required autocomplete="off">
                 </div>
+                </div>      
+                <br>          
 
                 <button type="submit" class="btn btn-primary btn-block">
-                    Simpan Data
+                    Ubah Data
                 </button>
             </form>
         </div>

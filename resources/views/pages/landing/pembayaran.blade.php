@@ -46,8 +46,8 @@
 	class="bg-color-dark-scale-5 border border-end-0 border-start-0 border-bottom-0 border-color-light-3 mt-0">
 	<div class="container text-center my-3 py-5">
 		<a href="#" class="goto-top">
-			<img src="img/lazy.png" data-plugin-lazyload data-plugin-options="{'threshold': 500}"
-				data-original="img/logo-light.png" width="102" height="45" class="mb-4 appear-animation" alt="Porto"
+			<img src="{{ asset('user/img/logoputih.png')}}" data-plugin-lazyload data-plugin-options="{'threshold': 500}"
+				data-original="{{ asset('user/img/logoputih.png')}}" width="102" height="45" class="mb-4 appear-animation" alt="Porto"
 				data-appear-animation="fadeIn" data-appear-animation-delay="300">
 		</a>
 		<p class="font-weight-500 text-4 ls-0 mb-4">Solusi Undangan Digital Anda

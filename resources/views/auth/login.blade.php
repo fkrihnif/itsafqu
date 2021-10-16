@@ -2,7 +2,7 @@
 
 @section('container')
 <a href="/" class="logo float-left">
-	<img src="{{ asset('user/img/logo2baru.png') }}" height="70" alt="Porto Admin" />
+	<img src="{{ asset('user/img/logoputih.png') }}" height="70" alt="Porto Admin" />
 </a>
 <div class="panel card-sign">
 	<div class="card-title-sign mt-3 text-end">

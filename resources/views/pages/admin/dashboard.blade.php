@@ -26,7 +26,7 @@
                                         <h3 class="text-4-1">Pendapatan</h3>
                                     </div>
                                     <div class="col-auto">
-                                        <strong class="text-color-dark text-5">637</strong>
+                                        <strong class="text-color-dark text-5">{{ $total }}</strong>
                                         <h3 class="text-4-1">Total Produk</h3>
                                     </div>
                                 </div>

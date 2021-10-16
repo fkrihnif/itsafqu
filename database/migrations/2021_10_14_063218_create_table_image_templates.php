@@ -14,7 +14,13 @@ class CreateTableImageTemplates extends Migration
     public function up()
     {
         Schema::create('image_templates', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('packages_id');
+            $table->string('nama');
+            $table->string('harga');
+            $table->text('deskripsi');
+            $table->text('thumbnail');
+            $table->text('link');
             $table->timestamps();
         });
     }

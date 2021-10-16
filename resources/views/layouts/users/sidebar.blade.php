@@ -15,20 +15,44 @@
             <nav id="menu" class="nav-main" role="navigation">
 
                 <ul class="nav nav-main">
-                    <li class="{{ Request::is('Dashboard') || Request::is('DashboardUser') ? 'nav-active' : '' }}">
-                        <a class="nav-link" href="{{ route('dashboard') }}"> {{-- href-nye disesuaikan (kalo admin kemane, kalo pelanggan kemane) --}}
+                    <li class="">
+                            @if (Auth::user()->roles == 'ADMIN')
+                            <a class="nav-link" href="{{ route('dashboard') }}">
+                            @elseif (Auth::user()->roles == 'USER')
+                            <a class="nav-link" href="{{ route('dashboard-user') }}">
+                            @endif
                             <i class="bx bx-home-alt" aria-hidden="true"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     {{-- ini punya admin --}}
-                    <li>
-                        <a class="nav-link" href="{{ route('produk.index') }}">
-                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                    @if (Auth::user()->roles == 'ADMIN')
+                    <li class="nav-parent {{ Request::is('admin/produk-web') || Request::is('admin/produk-web/create') || Request::is('admin/produk-video') || Request::is('admin/produk-video/create') || Request::is('admin/produk-gambar') || Request::is('admin/produk-gambar/create') ? 'nav-expanded nav-active' : '' }}">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-laptop-house"></i>
                             <span>Produk</span>
                         </a>
+                        <ul class="nav nav-children">
+                            <li class="{{ Request::is('admin/produk-web') || Request::is('admin/produk-web/create') ? 'nav-active' : '' }}">
+                                <a class="nav-link" href="{{ route('produk-web.index') }}">
+                                    Produk-Web
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('admin/produk-gambar') || Request::is('admin/produk-gambar/create') ? 'nav-active' : '' }}">
+                                <a class="nav-link" href="{{ route('produk-gambar.index') }}">
+                                    Produk-Gambar
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('admin/produk-video') || Request::is('admin/produk-video/create') ? 'nav-active' : '' }}">
+                                <a class="nav-link" href="{{ route('produk-video.index') }}">
+                                    Produk-Video
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+                    @endif
                     {{-- ini punya pelanggan --}}
+                    @if (Auth::user()->roles == 'USER')
                     <li class="{{ Request::is('PesananUser') ? 'nav-active' : '' }}">
                         <a class="nav-link" href="/PesananUser">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
@@ -51,11 +75,6 @@
                                     Single Item
                                 </a>
                             </li>
-                            <li>
-                                <a class="nav-link" href="ecommerce-products-form.html">
-                                    Products Form
-                                </a>
-                            </li>
                         </ul>
                     </li>
                     <li class="{{ Request::is('Team')? 'nav-active' : '' }}">
@@ -64,6 +83,7 @@
                             <span>Our Team</span>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </nav>
         </div>

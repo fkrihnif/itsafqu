@@ -1,7 +1,7 @@
 <header class="header">
     <div class="logo-container">
         <a href="../4.0.0" class="logo">
-            <img src="{{ url('user/img/logo2baru.png') }}" width="100" height="45" alt="Porto Admin" />
+            <img src="{{ url('user/img/logoputih.png') }}" width="100" height="45" alt="Porto Admin" />
         </a>
 
         <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"

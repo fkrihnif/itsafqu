@@ -17,6 +17,7 @@ class CreateTableWebTemplates extends Migration
             $table->bigIncrements('id');
             $table->integer('packages_id');
             $table->string('nama');
+            $table->string('slug');
             $table->string('harga');
             $table->text('deskripsi');
             $table->text('thumbnail');

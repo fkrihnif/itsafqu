@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\InvitationType;
-use App\Models\Template;
+use App\Models\Package;
+use App\Models\WebTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class ProductController extends Controller
+class ProductWebController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $templates = Template::orderBy('id', 'DESC')->get();
-        return view('pages.admin.produk.index', [
-            'templates' => $templates
-        ]);
+        $webs = WebTemplate::orderBy('id', 'DESC')->get();
+        return view('pages.admin.produk-web.index', compact('webs'));
     }
 
     /**
@@ -27,11 +26,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() //buat web
     {
-        $types = InvitationType::all();
-        return view('pages.admin.produk.create', [
-            'types' => $types
+        $packages = Package::all();
+        return view('pages.admin.produk-web.create', [
+            'packages' => $packages
         ]);
     }
 
@@ -44,28 +43,28 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validation = \Validator::make($request->all(), [
-            "invitation_types_id" => "required",
+            "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",
             "deskripsi" => "required",
         ])->validate();
+        $product = new WebTemplate();
 
-        $product = new Template();
-
-        $product->invitation_types_id = $request->get('invitation_types_id');
+        $product->packages_id = $request->get('packages_id');
         $product->nama = $request->get('nama');
         $product->harga = $request->get('harga');
         $product->deskripsi = $request->get('deskripsi');
         $product->link = $request->get('link');
+        $product['slug'] = Str::slug($request->nama);
 
         if ($request->file("thumbnail")) {
-            $thumbnail_file = $request->file('thumbnail')->store('thumbnail', 'public');
+            $thumbnail_file = $request->file('thumbnail')->store('thumbnail_web', 'public');
             $product->thumbnail = $thumbnail_file;
         };
 
         $product->save();
 
-        return redirect()->route('produk.index')->with('status', 'Produk Berhasil Dibuat!');
+        return redirect()->route('produk-web.index')->with('status', 'Produk Berhasil Dibuat!');
     }
 
 
@@ -88,8 +87,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $item = Template::findOrFail($id);
-        return view('pages.admin.produk.edit', ['item' => $item]);
+        $item = WebTemplate::findOrFail($id);
+        $packages = Package::all();
+        return view('pages.admin.produk-web.edit', ['item' => $item, 'packages' => $packages]);
     }
 
     /**
@@ -101,31 +101,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Template::findOrFail($id);
+        $product = WebTemplate::findOrFail($id);
 
-        \Validator::make($request->all(), [
-            "invitation_types_id" => "required",
+        $validation = \Validator::make($request->all(), [
+            "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",
             "deskripsi" => "required",
-        ]);
-        $product->invitation_types_id = $request->get('invitation_types_id');
+        ])->validate();
+
+        $product->packages_id = $request->get('packages_id');
         $product->nama = $request->get('nama');
         $product->harga = $request->get('harga');
         $product->deskripsi = $request->get('deskripsi');
         $product->link = $request->get('link');
+        $product['slug'] = Str::slug($request->nama);
 
         if ($request->file('thumbnail')) {
-            if ($product->thumbnail && file_exists(storage_path('app/public/' . $product->thumbnail))) {
-                \Storage::delete('public' . $product->thumbnail);
+            if ($product->thumbnail && file_exists(storage_path('app/public/thumbnail_web' . $product->thumbnail))) {
+                \Storage::delete('public/thumbnail_web' . $product->thumbnail);
             }
-            $thumbnail_file = $request->file('thumbnail')->store('thumbnail', 'public');
+            $thumbnail_file = $request->file('thumbnail')->store('thumbnail_web', 'public');
             $product->thumbnail = $thumbnail_file;
         }
 
-        $product->save();
+        $product->update();
 
-        return redirect()->route('carousel.index')->with('status', 'Data successfully updated');
+        return redirect()->route('produk-web.index')->with('status', 'Data successfully updated');
     }
 
     /**
@@ -136,6 +138,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = WebTemplate::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('produk-web.index')->with('status', 'Data successfully deleted');
     }
 }

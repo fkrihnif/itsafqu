@@ -8,9 +8,9 @@
 								<div class="header-logo">
 									<a href="#" class="goto-top"><img alt="Porto" width="102" height="45"
 											data-sticky-width="82" data-sticky-height="36" data-sticky-top="0"
-											src="{{ url('frontend/img/logo2baru.png') }}" data-plugin-lazyload
+											src="{{ url('user/img/logoputih.png') }}" data-plugin-lazyload
 											data-plugin-options="{'threshold': 500}"
-											data-original="{{ url('frontend/img/logo2baru.png') }}"></a>
+											data-original="{{ url('user/img/logoputih.png') }}"></a>
 								</div>
 							</div>
 						</div>

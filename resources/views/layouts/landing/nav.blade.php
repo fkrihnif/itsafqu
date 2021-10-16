@@ -17,9 +17,8 @@
                         data-hash-offset="70"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</a></li>       
         @endguest
 
-
         @auth                                         
-        <li>
+        {{-- <li>
         <form action="{{ url('logout') }}" method="POST">
                 @csrf
                 <a class="nav-link" data-hash
@@ -27,6 +26,28 @@
                             Keluar
                 </button></a>
                 </form>
+        </li> --}}
+        <li class="dropdown">
+                @if (Auth::user()->roles == 'ADMIN')
+                <a class="dropdown-item dropdown-toggle" href="{{ route('dashboard') }}">
+                        Lihat Dashboard
+                </a>
+                @else
+                <a class="dropdown-item dropdown-toggle" href="{{ route('dashboard-user') }}">
+                        Lihat Dashboard
+                </a>
+                @endif
+        <ul class="dropdown-menu">
+                <li>
+                        <form action="{{ url('logout') }}" method="POST">
+                                @csrf
+                                <a class="nav-link" data-hash
+                                data-hash-offset="70"><button type="submit" class="btn btn-danger">
+                                            Keluar
+                                </button></a>
+                                </form>
+                        </li>
+        </ul>
         </li>
         @endauth                                                    
         {{-- <li><a href="#footer" class="nav-link" data-hash

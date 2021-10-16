@@ -3,9 +3,9 @@
 @section('container')
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Manajemen Produk</h1>
-    <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Produk
+    <h1 class="h3 mb-0 text-gray-800">Manajemen Produk Web</h1>
+    <a href="{{ route('produk-web.create') }}" class="btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Produk Web
     </a>
 </div>
 
@@ -24,7 +24,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Jenis</th>
+                            <th>Jenis Paket</th>
                             <th>Nama</th>
                             <th>Harga</th>
                             <th>Thumbnail</th>
@@ -35,19 +35,19 @@
                         <?php
                         $i = 1;
                         ?>
-                        @forelse ($templates as $t)
+                        @forelse ($webs as $w)
                         <tr>
                             <td>{{ $i++ }}</td>
-                            <td>{{ $t->invitation_type['jenis_undangan'] }}</td>
-                            <td>{{ $t->nama }}</td>
-                            <td>{{ $t->harga }}</td>
-                            <td><img src="{{ Storage::url($t->thumbnail) }}" alt="{{ $t->nama }}"
-                                    width="200px" class="img-thumbnail"></td>
+                            <td>{{ $w->packages['nama_paket'] }}</td>
+                            <td>{{ $w->nama }}</td>
+                            <td>{{ $w->harga }}</td>
+                            <td><img src="{{ Storage::url($w->thumbnail) }}" alt="{{ $w->nama }}"
+                                    width="100px" class="img-thumbnail"></td>
                             <td>
-                                <a href="{{ route('produk.edit', $t->id) }}" class="btn btn-info">
+                                <a href="{{ route('produk-web.edit', $w->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>
                                 </a>
-                                <form action="{{ route('produk.destroy', $t->id) }}" method="POST"
+                                <form action="{{ route('produk-web.destroy', $w->id) }}" method="POST"
                                     class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                                     @csrf
                                     @method('delete')
@@ -59,11 +59,6 @@
                         </tr>
 
                         @empty
-                        <tr>
-                            <td colspan="4" class="text-center">
-                                Tidak Ada Data
-                            </td>
-                        </tr>
                         @endforelse
                     </tbody>
                 </table>
