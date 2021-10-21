@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\VideoTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductVideoController extends Controller
 {
@@ -41,7 +42,7 @@ class ProductVideoController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = \Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",
@@ -61,6 +62,14 @@ class ProductVideoController extends Controller
         };
 
         $product->save();
+
+
+        $string = "V0";
+        $string .= $product->id;
+
+        $input_kode = VideoTemplate::findOrFail($product->id);
+        $input_kode->kode = $string;
+        $input_kode->update();
 
         return redirect()->route('produk-video.index')->with('status', 'Produk Berhasil Dibuat!');
     }
@@ -101,7 +110,7 @@ class ProductVideoController extends Controller
     {
         $product = VideoTemplate::findOrFail($id);
 
-        $validation = \Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",

@@ -42,7 +42,7 @@
                         <form action="{{ url('logout') }}" method="POST">
                                 @csrf
                                 <a class="nav-link" data-hash
-                                data-hash-offset="70"><button type="submit" class="btn btn-danger">
+                                data-hash-offset="70"><button type="submit" class="btn btn-sm btn-danger">
                                             Keluar
                                 </button></a>
                                 </form>

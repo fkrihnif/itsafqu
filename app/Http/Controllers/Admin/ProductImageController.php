@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\ImageTemplate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductImageController extends Controller
 {
@@ -41,7 +42,7 @@ class ProductImageController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = \Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",
@@ -53,6 +54,7 @@ class ProductImageController extends Controller
         $product->nama = $request->get('nama');
         $product->harga = $request->get('harga');
         $product->deskripsi = $request->get('deskripsi');
+        $product->kode = '';
 
         if ($request->file("thumbnail")) {
             $thumbnail_file = $request->file('thumbnail')->store('thumbnail_gambar', 'public');
@@ -60,6 +62,13 @@ class ProductImageController extends Controller
         };
 
         $product->save();
+
+        $string = "G0";
+        $string .= $product->id;
+
+        $input_kode = ImageTemplate::findOrFail($product->id);
+        $input_kode->kode = $string;
+        $input_kode->update();
 
         return redirect()->route('produk-gambar.index')->with('status', 'Produk Berhasil Dibuat!');
     }
@@ -100,7 +109,7 @@ class ProductImageController extends Controller
     {
         $product = ImageTemplate::findOrFail($id);
 
-        $validation = \Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",

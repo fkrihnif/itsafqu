@@ -7,6 +7,8 @@
 				<div class="row justify-content-center">
 					<div class="col-md-8">
 						<section class="card form-wizard" id="w4">
+							<form action="/order/store/{{ $id_kode }}" method="POST" class="form-horizontal p-3" novalidate="novalidate" enctype="multipart/form-data">
+								@csrf
 							<header class="card-header">
 								<h2 class="card-title">Isi data dulu yaa kak...</h2>
 							</header>
@@ -34,15 +36,14 @@
 										</li>
 									</ul>
 								</div>
-
-								<form class="form-horizontal p-3" novalidate="novalidate">
 									<div class="tab-content">
 										<div id="w4-account" class="tab-pane active">
 											<div class="form-group row">
+												<input type="hidden" name="users_id" value="{{Auth::user()->id}}">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Lengkap</label>
-													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													<input type="text" class="form-control" id="validationCustom01" name="nama_lengkap_pria"
+														value="{{ old('nama_lengkap_pria') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -50,21 +51,24 @@
 													<label class="form-label" for="w4-namaLengkap">Nama
 														Panggilan</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													name="nama_panggilan_pria"
+													value="{{ old('nama_panggilan_pria') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Ayah</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													name="ayah_pria"
+													value="{{ old('ayah_pria') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Ibu</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													name="ibu_pria"
+													value="{{ old('ibu_pria') }}"  required>
 												</div>
 											</div>
 										</div>
@@ -73,7 +77,8 @@
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Lengkap</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													name="nama_lengkap_pr"
+													value="{{ old('nama_lengkap_pr') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -81,21 +86,24 @@
 													<label class="form-label" for="w4-namaLengkap">Nama
 														Panggilan</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													name="nama_panggilan_pr"
+													value="{{ old('nama_panggilan_pr') }}"required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Ayah</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													name="ayah_pr"
+													value="{{ old('ayah_pr') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Ibu</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													name="ibu_pr"
+													value="{{ old('ibu_pr') }}"required>
 												</div>
 											</div>
 										</div>
@@ -104,19 +112,22 @@
 												<div class="col-lg-6">
 													<label class="form-label">Tanggal</label>
 													<input type="date" class="form-control" id="validationCustom01"
-														value="" required>
+													name="tanggal_akad"
+													value="{{ old('tanggal_akad') }}" required>
 												</div>
 												<div class="col-lg-6">
 													<label class="form-label">Waktu / Jam</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="Contoh: 10.00 pagi" required>
+													name="jam_akad"
+													value="{{ old('jam_akad') }}" placeholder="Contoh: 10.00 pagi" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label">Tempat/Lokasi</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="Contoh: Kediaman Mempelai Wanita"
+													name="tempat_akad"
+													value="{{ old('tempat_akad') }}" placeholder="Contoh: Kediaman Mempelai Wanita"
 														required>
 												</div>
 											</div>
@@ -124,7 +135,8 @@
 												<div class="col-lg-12">
 													<label class="form-label">Alamat</label>
 													<textarea value="" placeholder="Contoh: Jalan Ahmad Yani ....."
-														rows="3" class="form-control text-3 h-auto py-2" name="message"
+														rows="3" class="form-control text-3 h-auto py-2" name="alamat_akad"
+														value="{{ old('alamat_akad') }}"
 														required id="validationCustom01"></textarea>
 												</div>
 											</div>
@@ -134,26 +146,30 @@
 												<div class="col-lg-6">
 													<label class="form-label">Tanggal</label>
 													<input type="date" class="form-control" id="validationCustom01"
-														value="" required>
+													name="tanggal_resepsi"
+													value="{{ old('tanggal_resepsi') }}" required>
 												</div>
 												<div class="col-lg-6">
 													<label class="form-label">Waktu / Jam</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="Contoh: 10.00 pagi" required>
+													name="jam_resepsi"
+													value="{{ old('jam_resepsi') }}" placeholder="Contoh: 13.00 Siang" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label">Tempat/Lokasi</label>
 													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="Contoh: Kediaman Mempelai Wanita"
+													name="tempat_resepsi"
+													value="{{ old('tempat_resepsi') }}" placeholder="Contoh: Gedung Serbaguna Mujahidin"
 														required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label">Alamat</label>
-													<textarea value="" placeholder="Contoh: Jalan Ahmad Yani ....."
+													<textarea 	name="alamat_resepsi"
+													value="{{ old('alamat_resepsi') }}" placeholder="Contoh: Jalan Ahmad Yani ....."
 														rows="3" class="form-control text-3 h-auto py-2" name="message"
 														required id="validationCustom01"></textarea>
 												</div>
@@ -161,27 +177,32 @@
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label">Link Google Map</label>
-													<input type="text" class="form-control" id="validationCustom01"
-														value="" placeholder="" required>
+													<input type="text" 	name="link_map"
+													value="{{ old('link_map') }}" class="form-control" id="validationCustom01"
+													required>
 												</div>
 											</div>
+											<button type="submit" value="Submit" class="btn btn-primary btn-modern">
+												Simpan dan Lanjut
+											</button>
 										</div>
 									</div>
-								</form>
+								
 							</div>
 							<div class="card-footer">
 								<ul class="pager">
 									<li class="previous disabled">
 										<a><i class="fas fa-angle-left"></i> Previous</a>
 									</li>
-									<li class="finish hidden float-end">
-										<a>Finish</a>
+									<li class="hidden float-end">
+									
 									</li>
 									<li class="next">
 										<a>Next <i class="fas fa-angle-right"></i></a>
 									</li>
 								</ul>
 							</div>
+							</form>
 						</section>
 					</div>
 				</div>

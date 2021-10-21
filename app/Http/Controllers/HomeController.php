@@ -23,12 +23,6 @@ class HomeController extends Controller
         //asdsad
     }
 
-    public function form1()
-    {
-        return view('pages.landing.form1');
-        //asdsad
-    }
-
     public function form2()
     {
         return view('pages.landing.form2');
@@ -68,11 +62,6 @@ class HomeController extends Controller
     public function DashboardU()
     {
         return view('pages.users.dashboard', ["title" => "Dashboard"]);
-        //asdsad
-    }
-    public function MyOrders()
-    {
-        return view('pages.users.myorders', ["title" => "Dashboard"]);
         //asdsad
     }
     public function Paket()

@@ -556,8 +556,12 @@
                                 </span>
                             </a>
                             <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
-                                <a href=""><button type="button"
-                                        class="btn btn-info btn-sm mb-2">Pesan</button></a>
+                                @auth
+                                <a href="{{ route('order', $image->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
+                                @endauth
+                                @guest
+                                    <a href="/form_daftar/{{ $image->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
+                                @endguest
                                 <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#image">
                                 Preview
                                 </button>
@@ -596,8 +600,12 @@
                                 </span>
                             </a>
                             <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
-                                <a href=""><button type="button"
-                                        class="btn btn-info btn-sm mb-2">Pesan</button></a>
+                                @auth
+                                <a href="{{ route('order', $video->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
+                                @endauth
+                                @guest
+                                    <a href="/form_daftar/{{ $video->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
+                                @endguest
                                <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#video">
                                 Preview
                                 </button>
@@ -609,7 +617,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                                             </div>
                                             <div class="modal-body" style="text-align: center">
-                                                <iframe width="560" height="315" src="{{ $video->link }}"></iframe>
+                                                <iframe width="auto" height="315" src="{{ $video->link }}"></iframe>
                                             </div>
                                         </div>
                                     </div>
@@ -636,8 +644,12 @@
                                 </span>
                             </a>
                             <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
-                                <a href=""><button type="button"
-                                        class="btn btn-info btn-sm mb-2">Pesan</button></a>
+                                @auth
+                                <a href="{{ route('order', $web->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
+                                @endauth
+                                @guest
+                                    <a href="/form_daftar/{{ $web->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
+                                @endguest
                                 <a href="{{ route('template-detail', $web->slug) }}" target="_blank"><button type="button"
                                         class="btn btn-dark btn-sm mb-2">Preview</button></a>
                             </div>

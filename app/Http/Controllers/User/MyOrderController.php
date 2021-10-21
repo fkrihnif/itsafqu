@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Models\ImageTemplate;
-use App\Models\VideoTemplate;
-use App\Models\WebTemplate;
+use Illuminate\Support\Facades\Auth;
 
-class TemplateController extends Controller
+class MyOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,8 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        $images = ImageTemplate::all();
-        $videos = VideoTemplate::all();
-        $webs = WebTemplate::all();
-        return view('pages.landing.product', compact('images', 'videos', 'webs'));
+        $order = Order::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        return view('pages.users.myorders', compact('order'));
     }
 
     /**
@@ -49,15 +47,9 @@ class TemplateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $template = WebTemplate::where('slug', $slug)
-            ->firstOrFail();
-
-        $a = 'pages.landing.templateWeb.';
-        $a .= $template->link;
-
-        return view($a);
+        //
     }
 
     /**

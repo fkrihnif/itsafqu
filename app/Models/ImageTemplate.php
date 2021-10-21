@@ -19,4 +19,9 @@ class ImageTemplate extends Model
     {
         return $this->belongsTo(Package::class, 'packages_id', 'id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'image_templates_id', 'id');
+    }
 }

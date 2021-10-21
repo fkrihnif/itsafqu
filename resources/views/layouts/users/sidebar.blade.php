@@ -50,11 +50,17 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="{{ Request::is('admin/order') ? 'nav-active' : '' }}">
+                        <a class="nav-link" href="{{ route('order.index') }}">
+                            <i class="bx bx-cart-alt" aria-hidden="true"></i>
+                            <span>Order</span>
+                        </a>
+                    </li>
                     @endif
                     {{-- ini punya pelanggan --}}
                     @if (Auth::user()->roles == 'USER')
-                    <li class="{{ Request::is('PesananUser') ? 'nav-active' : '' }}">
-                        <a class="nav-link" href="/PesananUser">
+                    <li class="{{ Request::is('customer/pesanan-ku') ? 'nav-active' : '' }}">
+                        <a class="nav-link" href="{{ route('pesanan-ku.index') }}">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Pesanan Saya</span>
                         </a>

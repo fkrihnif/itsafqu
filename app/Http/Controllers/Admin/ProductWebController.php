@@ -7,6 +7,7 @@ use App\Models\Package;
 use App\Models\WebTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ProductWebController extends Controller
 {
@@ -42,7 +43,7 @@ class ProductWebController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = \Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",
@@ -63,6 +64,13 @@ class ProductWebController extends Controller
         };
 
         $product->save();
+
+        $string = "W0";
+        $string .= $product->id;
+
+        $input_kode = WebTemplate::findOrFail($product->id);
+        $input_kode->kode = $string;
+        $input_kode->update();
 
         return redirect()->route('produk-web.index')->with('status', 'Produk Berhasil Dibuat!');
     }
@@ -103,7 +111,7 @@ class ProductWebController extends Controller
     {
         $product = WebTemplate::findOrFail($id);
 
-        $validation = \Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             "packages_id" => "required",
             "nama" => "required",
             "harga" => "required",

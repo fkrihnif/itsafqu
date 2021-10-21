@@ -8,16 +8,16 @@
 			<div class="col-md-8">
 				<p style="text-align: center">
 					<i class="icon-clock icons"></i> Selesaikan pembayaran
-					sebelum <b>besok</b> jam <b>17:30 , 06 Oct 2021</b>
+					sebelum tanggal <b>{{ $deadline }}</b>
 				</p>
 				<div class="card">
 					<div class="card-body">
 						<h4 style="text-align: center">Total Pembayaran</h4>
 						<h2 style="text-align: center; color: #26456e">
-							<strong> Rp. 99.000</strong>
+							<strong> Rp. {{ $harga }}</strong>
 						</h2>
 						<div class="alert alert-default" style="text-align: center">
-							Kode Pesanan : #asdabc90
+							Kode Pesanan : {{ $kode_pesanan }}
 						</div>
 						<div style="text-align: center">
 							<p class="mb-0">Silahkan Transfer ke :</p>
@@ -26,15 +26,15 @@
 
 						</div>
 						<div class="alert alert-info" style="text-align: center">
-							Silahkan Hubungi WhatsApp 081345025914 atau melalui <a href="#">Link ini</a> dengan
-							menyertakan kode pesanan <b>#asdabc90</b> untuk
+							Silahkan Hubungi WhatsApp 081345025914 atau melalui <a href="https://api.whatsapp.com/send?phone=62895380000239&text=Bismillah, Saya mau konfirmasi pembayaran dengan kode pemesanan{{ $kode_pesanan }}"
+							target="_blank">Link ini</a> dengan
+							menyertakan kode pesanan <b>{{ $kode_pesanan }}</b> untuk
 							konfirmasi pembayaran anda sekaligus aktifasi undangan anda
 						</div>
 					</div>
 					<div class="d-sm-flex align-items-center justify-content-between mb-3 mt-4 mx-4">
-						<a href="/"> <button type="button" class="btn btn-primary mb-2">Kembali Ke Home</button></a>
-						<button type="button" class="btn btn-outline btn-primary mb-2">Lihat
-							Dashboard Anda</button>
+						<a href="/" class="btn btn-primary mb-2">Kembali Ke Home</a>
+						<a href="/customer" class="btn btn-outline btn-primary mb-2">Lihat Dashboard Anda</a>
 					</div>
 				</div>
 			</div>

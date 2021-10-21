@@ -77,7 +77,7 @@
 				<a class="btn btn-danger mb-3 ms-1 me-1" href="#">Connect with <i class="fab fa-google"></i></a>
 			</div>
 
-			<p class="text-center">Don't have an account yet? <a href="/Register">Register!</a></p>
+			<p class="text-center">Don't have an account yet? <a href="/register">Register!</a></p>
 			<p class="text-center"><a href="/">Kembali ke ITSAFQU</a></p>
         </form>
 	</div>

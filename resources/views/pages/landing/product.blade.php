@@ -27,50 +27,137 @@
         data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
         <li class="nav-item active" data-option-value="*"><a class="nav-link text-1 text-uppercase active"
                 href="#">Show All</a></li>
-                @foreach ($types as $type)
-                <li class="nav-item" data-option-value=".{{ $type->jenis_undangan }}"><a class="nav-link text-1 text-uppercase" href="#">{{ $type->jenis_undangan }}</a></li>
-                @endforeach
+        <li class="nav-item" data-option-value=".web_templates"><a class="nav-link text-1 text-uppercase" href="#"
+            >Website</a></li>
+        <li class="nav-item" data-option-value=".video_templates"><a class="nav-link text-1 text-uppercase" href="#"
+            >Video</a></li>
+      <li class="nav-item" data-option-value=".image_templates"><a class="nav-link text-1 text-uppercase" href="#"
+            >Gambar</a></li>
     </ul>
 
     <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
         <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-            @foreach ($products as $product)
-            <div class="col-sm-4 col-lg-3 isotope-item {{ $product->invitation_type['jenis_undangan'] }}">
+            @foreach ($images as $image)
+            <div class="col-sm-4 col-lg-3 isotope-item {{ $image->getTable() }}">
                 <div class="portfolio-item">
-                    @if ($product->invitation_type['jenis_undangan'] == 'Website')
-                    <a href="{{ route('template-detail', $product->id) }}" target="_blank">
-                    @else
-                    <a href="" target="_blank">
-                    @endif
+                    <a href="" data-bs-toggle="modal" data-bs-target="#image">
                         <span class="thumb-info thumb-info-lighten border-radius-0">
                             <span class="thumb-info-wrapper gambar border-radius-0">
-                                <img src="{{ Storage::url($product->thumbnail) }}"
+                                <img src="{{ Storage::url($image->thumbnail) }}"
                                     class="img-fluid border-radius-0"
-                                    alt="" style="height: 320px!important">
+                                    alt="" style="height: 320px">
 
                                 <span class="thumb-info-title">
-                                    <span class="thumb-info-inner">{{ $product->nama }}</span>
-                                    <span class="thumb-info-type">{{ $product->invitation_type['jenis_undangan'] }}</span>
+                                    <span class="thumb-info-inner">{{ $image->nama }}</span>
+                                    <span class="thumb-info-type">Gambar</span>
                                 </span>
                             </span>
                         </span>
                     </a>
                     <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
-                        <a href=""><button type="button"
-                                class="btn btn-info btn-sm mb-2">Pesan</button></a>
-                        @if ($product->invitation_type['jenis_undangan'] == 'Website')
-                        <a href="{{ route('template-detail', $product->id) }}" target="_blank""><button type="button"
+                        @auth
+                        <a href="{{ route('order', $image->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
+                        @endauth
+                        @guest
+                            <a href="/form_daftar/{{ $image->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
+                        @endguest                           
+                        <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#image">
+                        Preview
+                        </button>
+                        <div class="modal fade" id="image" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="largeModalLabel">{{ $image->nama }}</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body" style="text-align: center">
+                                        <img src="{{ Storage::url($image->thumbnail) }}" alt="" style="height: 300px">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @foreach ($videos as $video)
+            <div class="col-sm-4 col-lg-3 isotope-item {{ $video->getTable() }}">
+                <div class="portfolio-item">
+                    <a href="" data-bs-toggle="modal" data-bs-target="#video">
+                        <span class="thumb-info thumb-info-lighten border-radius-0">
+                            <span class="thumb-info-wrapper gambar border-radius-0">
+                                <img src="{{ Storage::url($video->thumbnail) }}"
+                                    class="img-fluid border-radius-0"
+                                    alt="" style="height: 320px">
+
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner">{{ $video->nama }}</span>
+                                    <span class="thumb-info-type">Video</span>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                    <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
+                        @auth
+                        <a href="{{ route('order', $video->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
+                        @endauth
+                        @guest
+                            <a href="/form_daftar/{{ $video->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
+                        @endguest
+                       <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#video">
+                        Preview
+                        </button>
+                        <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="largeModalLabel">{{ $video->nama }}</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                                    </div>
+                                    <div class="modal-body" style="text-align: center">
+                                        <iframe width="auto" height="315" src="{{ $video->link }}"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @foreach ($webs as $web)
+            <div class="col-sm-4 col-lg-3 isotope-item {{ $web->getTable() }}">
+                <div class="portfolio-item">
+                    <a href="{{ route('template-detail', $web->slug) }}" target="_blank">
+                        <span class="thumb-info thumb-info-lighten border-radius-0">
+                            <span class="thumb-info-wrapper gambar border-radius-0">
+                                <img src="{{ Storage::url($web->thumbnail) }}"
+                                    class="img-fluid border-radius-0"
+                                    alt="" style="height: 320px">
+
+                                <span class="thumb-info-title">
+                                    <span class="thumb-info-inner">{{ $web->nama }}</span>
+                                    <span class="thumb-info-type">Website</span>
+                                </span>
+                            </span>
+                        </span>
+                    </a>
+                    <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
+                        @auth
+                        <a href="{{ route('order', $web->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
+                        @endauth
+                        @guest
+                            <a href="/form_daftar/{{ $web->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
+                        @endguest
+                        <a href="{{ route('template-detail', $web->slug) }}" target="_blank"><button type="button"
                                 class="btn btn-dark btn-sm mb-2">Preview</button></a>
-                        @else
-                        <a href="" target="_blank""><button type="button"
-                            class="btn btn-dark btn-sm mb-2">Preview</button></a>
-                        @endif
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
     </div>
+
     </div>
 
 </div>

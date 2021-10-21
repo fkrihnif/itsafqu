@@ -25,6 +25,7 @@ Route::prefix('admin')
         Route::resource('produk-web', '\App\Http\Controllers\Admin\ProductWebController');
         Route::resource('produk-gambar', '\App\Http\Controllers\Admin\ProductImageController');
         Route::resource('produk-video', '\App\Http\Controllers\Admin\ProductVideoController');
+        Route::resource('order', '\App\Http\Controllers\Admin\OrderController');
     });
 
 Route::prefix('customer')
@@ -33,13 +34,21 @@ Route::prefix('customer')
     ->group(function () {
         Route::get('/', [App\Http\Controllers\User\DashboardController::class, 'index'])
             ->name('dashboard-user');
+        Route::resource('pesanan-ku', '\App\Http\Controllers\User\MyOrderController');
     });
-
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/template', [TemplateController::class, 'index'])->name('template');
 Route::get('/template/{slug}', [TemplateController::class, 'show'])->name('template-detail');
-Route::get('/form1', [HomeController::class, 'form1'])->name('form1');
+
+Route::get('/form_daftar/{id}/create', [App\Http\Controllers\OrderController::class, 'formDaftar']);
+
+Route::post('/form_daftar/{id_kode}/create/store', [App\Http\Controllers\OrderController::class, 'daftar']);
+
+Route::get('/order/{id_kode}', [App\Http\Controllers\OrderController::class, 'order'])->name('order')->middleware(['auth']);;
+Route::post('/order/store/{id_kode}', [App\Http\Controllers\OrderController::class, 'orderStore'])->middleware(['auth']);;
+
+
 Route::get('/form2', [HomeController::class, 'form2'])->name('form2');
 Route::get('/formTemplate', [HomeController::class, 'formTemplate'])->name('formTemplate');
 Route::get('/pembayaran', [HomeController::class, 'pembayaran'])->name('pembayaran');

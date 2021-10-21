@@ -19,43 +19,60 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h4 class="mb-3 text-center">Silahkan Isi data dibawah ini, atau <a href="#">Login</a> terlebih
+                <h4 class="mb-3 text-center">Silahkan Isi data dibawah ini, atau <a href="/login">Login</a> terlebih
                     dahulu</h4>
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <form action="/" id="frmSignUp" method="post" class="needs-validation">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+                                <form action="/form_daftar/{{ $id_kode }}/create/store" method="POST" class="needs-validation" enctype="multipart/form-data">
+                                @csrf
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">Nama</label>
-                                            <input type="text" name="email" value=""
+                                            <input type="text" name="name" value="{{ old('name') }}"
+                                                class="form-control form-control-lg" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" name="username" value="{{ old('username') }}"
                                                 class="form-control form-control-lg" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">E-mail Address</label>
-                                            <input type="text" name="email" value=""
+                                            <input type="text" name="email" value="{{ old('email') }}"
                                                 class="form-control form-control-lg" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col">
                                             <label class="form-label">No WhatsApp</label>
-                                            <input type="number" name="email" value=""
+                                            <input type="number" name="no_hp" value="{{ old('no_hp') }}"
                                                 class="form-control form-control-lg" required>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-6">
                                             <label class="form-label">Password</label>
-                                            <input type="password" name="password" value=""
+                                            <input type="password" name="password" value="{{ old('password') }}"
                                                 class="form-control form-control-lg" required>
                                         </div>
                                         <div class="form-group col-lg-6">
                                             <label class="form-label">Re-enter Password</label>
-                                            <input type="password" name="confirmPassword" value=""
+                                            <input type="password" name="password_confirmation" value="{{ old('password') }}"
                                                 class="form-control form-control-lg" required>
                                         </div>
                                     </div>
@@ -63,16 +80,16 @@
                                         <div class="form-group col-lg-9">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" name="terms" class="custom-control-input"
-                                                    id="terms">
+                                                    id="terms" required>
                                                 <label class="custom-control-label text-2" for="terms">I have
                                                     read and agree to the <a href="#">terms of
                                                         service</a></label>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-3">
-                                            <input type="submit" value="Lanjut"
-                                                class="btn btn-primary btn-modern float-end"
-                                                data-loading-text="Loading...">
+                                                <button type="submit" value="Submit" class="btn btn-primary btn-modern float-end">
+                                                    Simpan dan Lanjut
+                                                </button>
                                         </div>
                                     </div>
                                 </form>

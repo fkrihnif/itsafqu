@@ -19,4 +19,9 @@ class WebTemplate extends Model
     {
         return $this->belongsTo(Package::class, 'packages_id', 'id');
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'web_templates_id', 'id');
+    }
 }
