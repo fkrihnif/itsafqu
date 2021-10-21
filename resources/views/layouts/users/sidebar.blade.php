@@ -15,7 +15,7 @@
             <nav id="menu" class="nav-main" role="navigation">
 
                 <ul class="nav nav-main">
-                    <li class="">
+                    <li class="{{ Request::is('admin') || Request::is('customer') ? 'nav-active' : '' }}">
                             @if (Auth::user()->roles == 'ADMIN')
                             <a class="nav-link" href="{{ route('dashboard') }}">
                             @elseif (Auth::user()->roles == 'USER')
@@ -65,26 +65,26 @@
                             <span>Pesanan Saya</span>
                         </a>
                     </li>
-                    <li class="nav-parent {{ Request::is('ProdukPaket') || Request::is('ProdukSingle')? 'nav-expanded nav-active' : '' }}">
+                    <li class="nav-parent {{ Request::is('customer/paket-produk') || Request::is('customer/single-produk')? 'nav-expanded nav-active' : '' }}">
                         <a class="nav-link" href="#">
                             <i class="fas fa-laptop-house"></i>
                             <span>Our Product</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li class="{{ Request::is('ProdukPaket') ? 'nav-active' : '' }}">
-                                <a class="nav-link" href="/ProdukPaket">
+                            <li class="{{ Request::is('customer/paket-produk') ? 'nav-active' : '' }}">
+                                <a class="nav-link" href="{{ route('paket-produk') }}">
                                     Paket Undangan
                                 </a>
                             </li>
-                            <li class="{{ Request::is('ProdukSingle')? 'nav-active' : '' }}">
-                                <a class="nav-link" href="/ProdukSingle">
+                            <li class="{{ Request::is('customer/single-produk')? 'nav-active' : '' }}">
+                                <a class="nav-link" href="{{ route('single-produk') }}">
                                     Single Item
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="{{ Request::is('Team')? 'nav-active' : '' }}">
-                        <a class="nav-link" href="/Team">
+                    <li class="{{ Request::is('customer/info-team')? 'nav-active' : '' }}">
+                        <a class="nav-link" href="{{ route('info-team') }}">
                             <i class="bx bx-cart-alt" aria-hidden="true"></i>
                             <span>Our Team</span>
                         </a>

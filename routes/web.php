@@ -35,6 +35,12 @@ Route::prefix('customer')
         Route::get('/', [App\Http\Controllers\User\DashboardController::class, 'index'])
             ->name('dashboard-user');
         Route::resource('pesanan-ku', '\App\Http\Controllers\User\MyOrderController');
+        Route::get('/info-team', [App\Http\Controllers\User\TeamInfoController::class, 'index'])
+            ->name('info-team');
+        Route::get('/single-produk', [App\Http\Controllers\User\SingleProductController::class, 'index'])
+            ->name('single-produk');
+        Route::get('/paket-produk', [App\Http\Controllers\User\PackageProductController::class, 'index'])
+            ->name('paket-produk');
     });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

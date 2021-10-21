@@ -573,7 +573,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                                             </div>
                                             <div class="modal-body" style="text-align: center">
-                                                <img src="{{ Storage::url($image->thumbnail) }}" alt="" style="height: 300px">
+                                                <img src="{{ Storage::url($image->thumbnail) }}" alt="{{ $image->nama }}" style="height: 300px">
                                             </div>
                                         </div>
                                     </div>

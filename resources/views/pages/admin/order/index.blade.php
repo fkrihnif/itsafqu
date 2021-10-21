@@ -66,7 +66,7 @@
                         <a href="" class="btn btn-info">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a href="" class="btn btn-info">
+                        <a href="{{ route('order.edit', $order->id) }}" class="btn btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
                         <button class="btn btn-danger">

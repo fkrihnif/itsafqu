@@ -77,7 +77,11 @@
                     </td>
                 </tr>
                 @empty
-                    Anda Belum Ada Pesan, Mau Pesan? klik <a href="#">disini!</a> 
+                <tr>
+                    <td colspan="5" class="text-center">
+                        Belum ada pesanan, Mau Pesan? klik <a href="#">disini!</a> 
+                    </td>
+                </tr>
                 @endforelse
             </tbody>
         </table>

@@ -59,7 +59,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Order::findOrFail($id);
+        return view('pages.admin.order.edit', ['item' => $item]);
     }
 
     /**
@@ -71,7 +72,13 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $order->status = $request->get('status');
+        $order->is_aktif = $request->get('is_aktif');
+
+        $order->update();
+        return redirect()->route('order.index')->with('status', 'Data successfully updated');
     }
 
     /**
