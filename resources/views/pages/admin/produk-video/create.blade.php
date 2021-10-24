@@ -37,13 +37,13 @@
 
                 <div class="form-group">
                     <label for="nama"><strong>Nama</strong></label>
-                    <input type="text" name="nama" class="form-control" placeholder=""
-                        value="{{ old('nama') }}" required autocomplete="off">
+                    <input type="text" name="nama" class="form-control" placeholder="" value="{{ old('nama') }}"
+                        required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="harga"><strong>Harga</strong></label>
-                    <input type="number" name="harga" class="form-control" placeholder=""
-                        value="{{ old('harga') }}" required autocomplete="off">
+                    <input type="number" name="harga" class="form-control" placeholder="" value="{{ old('harga') }}"
+                        required autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="deskripsi"><strong>Deskripsi</strong></label>
@@ -53,17 +53,23 @@
                 </div>
                 <div class="form-group">
                     <label for="thumbnail"><strong>Upload thumbnail:</strong> <i>(jpeg,png,jpg,svg)</i></label>
-                    <input class="form-control-file" type="file" name="thumbnail" id="thumbnail"
-                     required>
+                    <input class="form-control-file" type="file" accept="image/*" name="thumbnail" id="thumbnail"
+                        required>
                 </div>
 
                 <div class="website" id="website">
-                <div class="form-group">
                     <label for="link"><strong>Link</strong></label>
-                    <input type="text" name="link" class="form-control" placeholder=""
-                        value="{{ old('link') }}" required autocomplete="off">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                        <input type="text" name="Dlink" class="form-control" placeholder="VbmDmggxauE" value="http://www.youtube.com/watch?v="
+                            required autocomplete="off" readonly="readonly">
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="text" name="link" class="form-control" placeholder="VbmDmggxauE (Kode Terakhir dari URL video)" value="{{ old('link') }}"
+                            required autocomplete="off">
+                        </div>
+                    </div>
                 </div>
-                </div>                
                 <br>
                 <button type="submit" class="btn btn-primary btn-block">
                     Simpan Data
