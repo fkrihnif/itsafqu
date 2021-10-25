@@ -57,7 +57,8 @@ class ProductWebController extends Controller
         $product->deskripsi = $request->get('deskripsi');
         $product->link = $request->get('link');
         $product['slug'] = Str::slug($request->nama);
-
+        $product->kode = '';
+        $product->is_recommended = 'NO';
         if ($request->file("thumbnail")) {
             $thumbnail_file = $request->file('thumbnail')->store('thumbnail_web', 'public');
             $product->thumbnail = $thumbnail_file;

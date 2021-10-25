@@ -54,8 +54,9 @@ class ProductVideoController extends Controller
         $product->nama = $request->get('nama');
         $product->harga = $request->get('harga');
         $product->deskripsi = $request->get('deskripsi');
-        $product->link = 'http://www.youtube.com/watch?v='.$request->get('link');
+        $product->link = 'http://www.youtube.com/watch?v=' . $request->get('link');
         $product->kode = '';
+        $product->is_recommended = 'NO';
 
         if ($request->file("thumbnail")) {
             $thumbnail_file = $request->file('thumbnail')->store('thumbnail_video', 'public');
@@ -121,7 +122,7 @@ class ProductVideoController extends Controller
         $product->nama = $request->get('nama');
         $product->harga = $request->get('harga');
         $product->deskripsi = $request->get('deskripsi');
-        $product->link = 'http://www.youtube.com/watch?v='.$request->get('link');
+        $product->link = 'http://www.youtube.com/watch?v=' . $request->get('link');
 
         if ($request->file('thumbnail')) {
             if ($product->thumbnail && file_exists(storage_path('app/public/thumbnail_video' . $product->thumbnail))) {

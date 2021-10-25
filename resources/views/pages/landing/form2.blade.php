@@ -182,9 +182,11 @@
 													required>
 												</div>
 											</div>
-											<button type="submit" value="Submit" class="btn btn-primary btn-modern">
-												Simpan dan Lanjut
-											</button>
+											<div class="row mt-3">
+												<button type="submit" class="btn btn-primary btn-block" style="height: 40px;">
+													Simpan dan Lanjut
+												</button>
+										</div>
 										</div>
 									</div>
 								

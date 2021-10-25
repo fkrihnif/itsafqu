@@ -55,6 +55,7 @@ class ProductImageController extends Controller
         $product->harga = $request->get('harga');
         $product->deskripsi = $request->get('deskripsi');
         $product->kode = '';
+        $product->is_recommended = 'NO';
 
         if ($request->file("thumbnail")) {
             $thumbnail_file = $request->file('thumbnail')->store('thumbnail_gambar', 'public');

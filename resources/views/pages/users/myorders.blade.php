@@ -12,6 +12,12 @@
         <h2 class="card-title">Riwayat Pesanan Saya</h2>
     </header>
     <div class="card-body">
+        @if(session('status'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{session('status')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close"></button>
+        </div>
+        @endif
         <table class="table table-bordered table-striped mb-0" id="datatable-editable">
             <thead>
                 <tr>
