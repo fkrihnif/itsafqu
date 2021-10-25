@@ -66,7 +66,6 @@ class ProductImageController extends Controller
 
         $string = "G0";
         $string .= $product->id;
-
         $input_kode = ImageTemplate::findOrFail($product->id);
         $input_kode->kode = $string;
         $input_kode->update();
