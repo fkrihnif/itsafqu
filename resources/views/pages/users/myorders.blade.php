@@ -55,11 +55,11 @@
                         @endif
                     <td>
                         @if ($order->status == 'Dibayar' AND $order->is_aktif == 'Belum Aktif')
-                        <a href="" class="btn btn-info">
+                        <a href="{{ route('pesanan-ku.edit', $order->id) }}" class="btn btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
                         @elseif ($order->status == 'Menunggu Pembayaran')
-                        <a href="" class="btn btn-info">
+                        <a href="{{ route('pesanan-ku.edit', $order->id) }}" class="btn btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
                         @else
@@ -69,9 +69,14 @@
                         @if ($order->is_aktif == 'Belum Aktif' && $order->status == 'Dibayar')            
                         @else
                      
-                        <button class="btn btn-danger">
-                            <i class="fa fa-trash"></i>
-                        </button>
+                        <form action="{{ route('pesanan-ku.destroy', $order->id) }}" method="POST"
+                            class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
                         @endif
                         
                     </td>

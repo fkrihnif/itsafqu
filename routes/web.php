@@ -23,8 +23,14 @@ Route::prefix('admin')
         Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])
             ->name('dashboard');
         Route::resource('produk-web', '\App\Http\Controllers\Admin\ProductWebController');
+        Route::get('/actioneditweb/{id}', '\App\Http\Controllers\Admin\ProductWebController@actionedit');
+        Route::get('/actionedittweb/{id}', '\App\Http\Controllers\Admin\ProductWebController@actioneditt');
         Route::resource('produk-gambar', '\App\Http\Controllers\Admin\ProductImageController');
+        Route::get('/actioneditgambar/{id}', '\App\Http\Controllers\Admin\ProductImageController@actionedit');
+        Route::get('/actionedittgambar/{id}', '\App\Http\Controllers\Admin\ProductImageController@actioneditt');
         Route::resource('produk-video', '\App\Http\Controllers\Admin\ProductVideoController');
+        Route::get('/actioneditvideo/{id}', '\App\Http\Controllers\Admin\ProductVideoController@actionedit');
+        Route::get('/actionedittvideo/{id}', '\App\Http\Controllers\Admin\ProductVideoController@actioneditt');
         Route::resource('order', '\App\Http\Controllers\Admin\OrderController');
     });
 

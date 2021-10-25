@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contract;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,7 +61,9 @@ class MyOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Order::with(['contracts', 'receptions'])->findOrFail($id);
+
+        return view('pages.users.editorders', ['item' => $item]);
     }
 
     /**
@@ -83,6 +86,9 @@ class MyOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $order = Order::findOrFail($id);
+        $order->delete();
+
+        return redirect()->route('pesanan-ku.index')->with('status', 'Order Berhasil Dihapus!');
     }
 }

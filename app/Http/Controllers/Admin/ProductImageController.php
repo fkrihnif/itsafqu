@@ -147,4 +147,20 @@ class ProductImageController extends Controller
 
         return redirect()->route('produk-gambar.index')->with('status', 'Data successfully deleted');
     }
+
+    public function actionedit($id)
+    {
+        $product = ImageTemplate::findOrFail($id);
+        $product->is_recommended = 'YES';
+        $product->update();
+        return redirect()->route('produk-gambar.index')->with('status', 'Updated successfully!');
+    }
+
+    public function actioneditt($id)
+    {
+        $product = ImageTemplate::findOrFail($id);
+        $product->is_recommended = 'NO';
+        $product->update();
+        return redirect()->route('produk-gambar.index')->with('status', 'Updated successfully!');
+    }
 }

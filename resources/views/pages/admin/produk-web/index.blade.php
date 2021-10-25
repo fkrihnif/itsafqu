@@ -28,6 +28,7 @@
                             <th>Nama</th>
                             <th>Harga</th>
                             <th>Thumbnail</th>
+                            <th>Recommended?</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,6 +44,13 @@
                             <td>{{ $w->harga }}</td>
                             <td><img src="{{ Storage::url($w->thumbnail) }}" alt="{{ $w->nama }}"
                                     width="100px" class="img-thumbnail"></td>
+                            <td>
+                            @if ($w->is_recommended == 'NO')
+                                <a href="actioneditweb/{{ $w->id }}" type="submit" onclick="return confirm('Yakin ingin mengubah menjadi Recommended?');" class="btn btn-warning btn-sm">NO</a>
+                            @else
+                            <a href="actionedittweb/{{ $w->id }}" type="submit" onclick="return confirm('Yakin ingin mengubah menjadi tidak Recommended?');" class="btn btn-success btn-sm">YES</a>
+                            @endif
+                            </td>
                             <td>
                                 <a href="{{ route('produk-web.edit', $w->id) }}" class="btn btn-info">
                                     <i class="fa fa-pencil-alt"></i>

@@ -149,4 +149,20 @@ class ProductVideoController extends Controller
 
         return redirect()->route('produk-video.index')->with('status', 'Data successfully deleted');
     }
+
+    public function actionedit($id)
+    {
+        $product = VideoTemplate::findOrFail($id);
+        $product->is_recommended = 'YES';
+        $product->update();
+        return redirect()->route('produk-video.index')->with('status', 'Updated successfully!');
+    }
+
+    public function actioneditt($id)
+    {
+        $product = VideoTemplate::findOrFail($id);
+        $product->is_recommended = 'NO';
+        $product->update();
+        return redirect()->route('produk-video.index')->with('status', 'Updated successfully!');
+    }
 }

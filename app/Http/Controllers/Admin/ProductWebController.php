@@ -151,4 +151,20 @@ class ProductWebController extends Controller
 
         return redirect()->route('produk-web.index')->with('status', 'Data successfully deleted');
     }
+
+    public function actionedit($id)
+    {
+        $product = WebTemplate::findOrFail($id);
+        $product->is_recommended = 'YES';
+        $product->update();
+        return redirect()->route('produk-web.index')->with('status', 'Updated successfully!');
+    }
+
+    public function actioneditt($id)
+    {
+        $product = WebTemplate::findOrFail($id);
+        $product->is_recommended = 'NO';
+        $product->update();
+        return redirect()->route('produk-web.index')->with('status', 'Updated successfully!');
+    }
 }
