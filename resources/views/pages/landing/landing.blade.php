@@ -5,11 +5,15 @@
 <head>
     <style>
         /* penggunaan media query pada default tablet layout */
+        
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
         @media only screen and (min-width: 768px) and (max-width: 991px) {
             .gambar {
                 width: auto !important;
-                height: 300px;
-                max-height: 300px;
+                height: 250px;
             }
         }
 
@@ -17,7 +21,6 @@
         @media only screen and (min-width: 480px) and (max-width: 767px) {
             .gambar {
                 width: auto !important;
-                max-width: 160px;
                 height: 210px;
             }
         }
@@ -25,7 +28,7 @@
         @media only screen and (min-width: 180px) and (max-width: 479px) {
             .gambar {
                 width: auto !important;
-                height: 160px;
+                height: 190px;
             }
         }
 
@@ -541,9 +544,8 @@
                     @foreach ($images as $image)
                     <div class="col-sm-4 col-lg-3 isotope-item {{ $image->getTable() }}">
                         <div class="portfolio-item">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#image">
                                 <span class="thumb-info thumb-info-lighten border-radius-0">
-                                    <span class="thumb-info-wrapper gambar border-radius-0">
+                                    <span class="thumb-info-wrapper gambar border-radius-0"">
                                         <img src="{{ Storage::url($image->thumbnail) }}"
                                             class="img-fluid border-radius-0"
                                             alt="" style="height: 320px">
@@ -554,7 +556,6 @@
                                         </span>
                                     </span>
                                 </span>
-                            </a>
                             <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
                                 @auth
                                 <a href="{{ route('order', $image->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
@@ -562,22 +563,7 @@
                                 @guest
                                     <a href="/form_daftar/{{ $image->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
                                 @endguest
-                                <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#image">
-                                Preview
-                                </button>
-                                <div class="modal fade" id="image" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="largeModalLabel">{{ $image->nama }}</h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-                                            </div>
-                                            <div class="modal-body" style="text-align: center">
-                                                <img src="{{ Storage::url($image->thumbnail) }}" alt="{{ $image->nama }}" style="height: 300px">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="test-popup-link btn btn-dark btn-sm mb-2" href="{{ Storage::url($image->thumbnail) }}">Preview</a>
                             </div>
                         </div>
                     </div>
@@ -585,7 +571,6 @@
                     @foreach ($videos as $video)
                     <div class="col-sm-4 col-lg-3 isotope-item {{ $video->getTable() }}">
                         <div class="portfolio-item">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#video">
                                 <span class="thumb-info thumb-info-lighten border-radius-0">
                                     <span class="thumb-info-wrapper gambar border-radius-0">
                                         <img src="{{ Storage::url($video->thumbnail) }}"
@@ -598,7 +583,6 @@
                                         </span>
                                     </span>
                                 </span>
-                            </a>
                             <div class="d-sm-flex align-items-center justify-content-between mt-2 mx-4">
                                 @auth
                                 <a href="{{ route('order', $video->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>
@@ -606,22 +590,7 @@
                                 @guest
                                     <a href="/form_daftar/{{ $video->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
                                 @endguest
-                               <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#video">
-                                Preview
-                                </button>
-                                <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="largeModalLabel">{{ $video->nama }}</h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-                                            </div>
-                                            <div class="modal-body" style="text-align: center">
-                                                <iframe width="auto" height="315" src="{{ $video->link }}"></iframe>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="popup-youtube btn btn-dark btn-sm mb-2" href="{{ $video->link }}">Preview</a>
                             </div>
                         </div>
                     </div>

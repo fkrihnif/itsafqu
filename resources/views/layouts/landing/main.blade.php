@@ -92,5 +92,27 @@
 
 	<!-- Theme Initialization Files -->
 	<script src="{{ url('frontend/js/theme.init.js') }}"></script>
+	<script src="{{ url('frontend/js/examples/examples.gallery.js') }}"></script>
+	<script>
+		$(document).ready(function () {
+
+			$('.test-popup-link').magnificPopup({
+				type: 'image',
+				// other options
+				gallery: {
+					enabled: true
+				},
+			});
+			$('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+				disableOn: 700,
+				type: 'iframe',
+				mainClass: 'mfp-fade',
+				removalDelay: 160,
+				preloader: false,
+
+				fixedContentPos: false
+			});
+		});
+	</script>
 </html>
 </body>
