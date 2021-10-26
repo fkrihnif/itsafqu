@@ -49,7 +49,7 @@
        <div class="isotope-item image col-sm-6 col-md-4 col-lg-3">
         <div class="thumbnail">
             <div class="thumb-preview">
-                <a class="thumb-image" href="user/img/projects/project-1.jpg">
+                <a class="test-popup-link thumb-image" href="{{ Storage::url($image->thumbnail) }}">
                     <img src="{{ Storage::url($image->thumbnail) }}" class="img-fluid" alt="Project" style="height: 220px">
                 </a>
                 <div class="mg-thumb-options">
@@ -86,7 +86,7 @@
             @foreach ($videos as $video)
             <div class="col-md-4">
                 <div class="embed-responsive embed-responsive-1by1">
-                    <iframe class="embed-responsive-item" src="{{ $video->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="{{ 'https://www.youtube.com/embed/'.substr($video->link, -11) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('order', $video->kode) }}" class="btn btn-info btn-sm mb-2">Pesan</a>

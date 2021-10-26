@@ -80,6 +80,7 @@ Theme Version: 	4.0.0
 		success: function(element) {
 			$(element).closest('.form-group').removeClass('has-error');
 			$(element).remove();
+			console.log($("input[name='termsR']:checked").val());
 		},
 		errorPlacement: function( error, element ) {
 			element.parent().append( error );
@@ -89,6 +90,33 @@ Theme Version: 	4.0.0
 	$w2finish.on('click', function( ev ) {
 		ev.preventDefault();
 		var validated = $('#w2 form').valid();
+		if(!$('input[name=termsR]').is(':checked')) { 
+			new PNotify({
+				title: 'OOppss!',
+				text: 'Harap pilih template WEB yang akan anda gunakan.',
+				type: 'custom',
+				addclass: 'notification-warning'
+			}); 
+			return false;
+		}
+		if(!$('input[name=termsR2]').is(':checked')) { 
+			new PNotify({
+				title: 'OOppss!',
+				text: 'Harap pilih template GAMBAR yang akan anda gunakan.',
+				type: 'custom',
+				addclass: 'notification-warning'
+			}); 
+			return false;
+		}
+		if(!$('input[name=termsR3]').is(':checked')) { 
+			new PNotify({
+				title: 'OOppss!',
+				text: 'Harap pilih template VIDEO yang akan anda gunakan.',
+				type: 'custom',
+				addclass: 'notification-warning'
+			}); 
+			return false;
+		}
 		if ( validated ) {
 			new PNotify({
 				title: 'Congratulations',

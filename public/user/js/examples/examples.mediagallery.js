@@ -34,6 +34,29 @@
 		}
 	});
 
+	$('input[name=termsR]').change(function() {
+		var wrapper = $(this).parents('.thumbnail');
+		$('.cumaini').removeClass('thumbnail-selected');
+		$(wrapper).addClass('thumbnail-selected');
+		var is_external = $("input[name='termsR']:checked").val();//name is is_external not radio
+		$('.tampil').html('Template WEB dipilih: <span class="badge badge-dark">'+is_external+'</span>');
+	});
+	$('input[name=termsR2]').change(function() {
+		var wrapper = $(this).parents('.thumbnail');
+		$('.cumaini2').removeClass('thumbnail-selected');
+		$(wrapper).addClass('thumbnail-selected');
+		var is_external = $("input[name='termsR2']:checked").val();//name is is_external not radio
+		$('.tampil2').html('Template GAMBAR dipilih: <span class="badge badge-dark">'+is_external+'</span>');
+	});
+	$('input[name=termsR3]').change(function() {
+		var wrapper = $(this).parents('.thumbnail');
+		$('.cumaini3').removeClass('thumbnail-selected');
+		$(wrapper).addClass('thumbnail-selected');
+		var is_external = $("input[name='termsR3']:checked").val();//name is is_external not radio
+		$('.tampil3').html('Template VIDEO dipilih: <span class="badge badge-dark">'+is_external+'</span>');
+	});
+
+
 	/*
 	Image Preview: Lightbox
 	*/
