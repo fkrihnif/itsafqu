@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TemplateController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -57,8 +59,14 @@ Route::get('/form_daftar/{id}/create', [App\Http\Controllers\OrderController::cl
 
 Route::post('/form_daftar/{id_kode}/create/store', [App\Http\Controllers\OrderController::class, 'daftar']);
 
-Route::get('/order/{id_kode}', [App\Http\Controllers\OrderController::class, 'order'])->name('order')->middleware(['auth']);;
-Route::post('/order/store/{id_kode}', [App\Http\Controllers\OrderController::class, 'orderStore'])->middleware(['auth']);;
+Route::get('/order/{id_kode}', [App\Http\Controllers\OrderController::class, 'order'])->name('order')->middleware(['auth']);
+Route::post('/order/store/{id_kode}', [App\Http\Controllers\OrderController::class, 'orderStore'])->middleware(['auth']);
+
+Route::get('/link/{kode_pesanan}', [App\Http\Controllers\OrderController::class, 'link'])->name('link')->middleware(['auth']);
+Route::post('/link/store/{kode_pesanan}', [App\Http\Controllers\OrderController::class, 'linkStore'])->middleware(['auth']);
+
+Route::get('/{link}', [App\Http\Controllers\OrderController::class, 'show'])->name('show-wedding');
+
 
 
 Route::get('/form2', [HomeController::class, 'form2'])->name('form2');

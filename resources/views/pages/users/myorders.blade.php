@@ -24,6 +24,7 @@
                     <th>NO</th>
                     <th>KODE PESANAN</th>
                     <th>JENIS PESANAN</th>
+                    <th>HARGA</th>
                     <th>STATUS</th>
                     <th>Actions</th>
                 </tr>
@@ -47,6 +48,18 @@
                             Video
                         @elseif($cek_type == 'W')
                             Website
+                            <br>
+                            <a href="{{ route('show-wedding', $order->url) }}" target="_blank"><button type="button"
+                                class="btn btn-primary btn-sm mb-2">Lihat Undangan Saya</button></a>
+                        @endif
+                    </td>
+                    <td>
+                        @if ($cek_type == 'G')
+                            @currency($order->image_template->harga)
+                        @elseif($cek_type == 'V')
+                            @currency($order->video_template->harga)
+                        @elseif($cek_type == 'W')
+                            @currency($order->web_template->harga)
                         @endif
                     </td>
                     <td>

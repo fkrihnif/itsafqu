@@ -14,6 +14,8 @@ use Carbon\Carbon;  //cabon utk format tanggal bawaan laravel
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class OrderController extends Controller
 {
@@ -122,6 +124,7 @@ class OrderController extends Controller
         $order->nama_panggilan_pr = $request->nama_panggilan_pr;
         $order->ayah_pr = $request->ayah_pr;
         $order->ibu_pr = $request->ibu_pr;
+        $order->url = '';
 
         //deadline pembayaran
         $now = Carbon::now('Asia/Jakarta');
@@ -146,6 +149,96 @@ class OrderController extends Controller
         $resepsi->jam_resepsi = $request->jam_resepsi;
         $resepsi->save();
 
-        return view('pages.landing.pembayaran', compact('deadline', 'harga', 'kode_pesanan'));
+
+        //buat pesan email
+        $get_email = User::where('id', $request->users_id)->first()->email;
+        $get_name = User::where('id', $request->users_id)->first()->name;
+        $email_admin = 'itsafqubuntal27@gmail.com';
+
+        $data = array('name' => $get_name, 'price' => $harga, 'deadline' => $deadline, 'kode_pesanan' => $kode_pesanan);
+
+        Mail::send('pages.landing.mailordercustomer', $data, function ($message) use ($get_email) {
+            $message->to($get_email, 'Halo Kak')->subject('Silahkan Lanjutkan pembayaran Anda');
+            $message->from(env('MAIL_USERNAME'), 'Admin ITSAFQU');
+        });
+
+        Mail::send('pages.landing.mailorderadmin', $data, function ($message) use ($email_admin) {
+            $message->to($email_admin, 'Halo Kak')->subject('Ada Orderan Masok woyy!!');
+            $message->from(env('MAIL_USERNAME'), 'Admin ITSAFQU');
+        });
+
+        if ($cek_type === 'W') {
+            return redirect()->route('link', ['kode_pesanan' => $kode_pesanan]);
+        } else {
+            return view('pages.landing.pembayaran', compact('deadline', 'harga', 'kode_pesanan', 'cek_type'));
+        }
+    }
+
+    public function link(Request $request, $kode_pesanan)
+    {
+        $kode_pesanan = $kode_pesanan;
+        return view('pages.landing.formlink', compact('kode_pesanan'));
+    }
+
+    public function linkStore(Request $request, $kode_pesanan)
+    {
+        $validation = Validator::make($request->all(), [
+            "url" => "required|unique:orders,url",
+        ])->validate();
+
+        $order = Order::where('kode_pesanan', $kode_pesanan)->first();
+        $order->url = $request->url;
+        $order->update();
+
+        $url = $request->url;
+
+        $now = Carbon::now('Asia/Jakarta');
+        $deadline = $now->add('3 day')->format('d M Y, H:i\ ');
+
+        $cek = $kode_pesanan;
+        $cek_type = mb_substr($kode_pesanan, 0, 1);
+
+        if ($cek_type == 'G') {
+            //get harga
+            $get_id = Order::where('kode_pesanan', $kode_pesanan)->first()->image_templates_id;
+            $harga = ImageTemplate::where('id', $get_id)->first()->harga;
+        } else if ($cek_type == 'V') {
+            //get harga
+            $get_id = Order::where('kode_pesanan', $kode_pesanan)->first()->video_templates_id;
+            $harga = VideoTemplate::where('id', $get_id)->first()->harga;
+        } else if ($cek_type == 'W') {
+            //get harga
+            $get_id = Order::where('kode_pesanan', $kode_pesanan)->first()->web_templates_id;
+            $harga = WebTemplate::where('id', $get_id)->first()->harga;
+        }
+
+        return view('pages.landing.pembayaran', compact('deadline', 'harga', 'kode_pesanan', 'url', 'cek_type'));
+    }
+
+    public function show($link)
+    {
+        if (url()->current() == 'http://127.0.0.1:8000/login') {
+            return view('auth.login');
+        } elseif (url()->current() == 'http://127.0.0.1:8000/register') {
+            return view('auth.register');
+        }
+
+        //ambil data order, akad, resepsi
+        $order_id = Order::where('url', $link)->first()->id;
+
+        $order = Order::where('url', $link)->firstOrFail();
+
+        $akad = Contract::where('orders_id', $order_id)->firstOrFail();
+        $resepsi = Reception::where('orders_id', $order_id)->firstOrFail();
+
+        //ambil id template web
+        $get_id = Order::where('url', $link)->first()->web_templates_id;
+
+        $template = WebTemplate::where('id', $get_id)->firstOrFail();
+
+        $a = 'pages.landing.templateWebUser.';
+        $a .= $template->link;
+
+        return view($a, compact('order', 'akad', 'resepsi'));
     }
 }

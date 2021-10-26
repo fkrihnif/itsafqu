@@ -14,7 +14,7 @@
 					<div class="card-body">
 						<h4 style="text-align: center">Total Pembayaran</h4>
 						<h2 style="text-align: center; color: #26456e">
-							<strong> Rp. {{ $harga }}</strong>
+							<strong> @currency($harga)</strong>
 						</h2>
 						<div class="alert alert-default" style="text-align: center">
 							Kode Pesanan : {{ $kode_pesanan }}
@@ -33,7 +33,12 @@
 						</div>
 					</div>
 					<div class="d-sm-flex align-items-center justify-content-between mb-3 mt-4 mx-4">
+						@if ($cek_type == 'W')
+						<a href="{{ route('show-wedding', $url) }}" target="_blank"><button type="button"
+							class="btn btn-primary mb-2">Lihat Undangan Saya</button></a>
+						@else
 						<a href="/" class="btn btn-primary mb-2">Kembali Ke Home</a>
+						@endif
 						<a href="/customer" class="btn btn-outline btn-primary mb-2">Lihat Dashboard Anda</a>
 					</div>
 				</div>

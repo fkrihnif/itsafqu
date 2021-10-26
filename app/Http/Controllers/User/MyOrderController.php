@@ -19,7 +19,7 @@ class MyOrderController extends Controller
      */
     public function index()
     {
-        $order = Order::where('users_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $order = Order::where('users_id', Auth::user()->id)->with(['web_template', 'video_template', 'image_template'])->orderBy('id', 'DESC')->get();
         return view('pages.users.myorders', compact('order'));
     }
 
