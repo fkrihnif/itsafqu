@@ -32,9 +32,10 @@
 	<link rel="stylesheet" href="{{ url('user/vendor/datatables/media/css/dataTables.bootstrap5.css') }}" />
 	<link rel="stylesheet" href="{{ url('user/vendor/select2/css/select2.css') }}" />
 	<link rel="stylesheet" href="{{ url('user/vendor/select2-bootstrap-theme/select2-bootstrap.min.css') }}" />
+	<link rel="stylesheet" href="{{ url('user/vendor/pnotify/pnotify.custom.css') }}" />
 
 	{{-- Jika ke halaman ProdukPaket --}}
-	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle') || Request::is('formTemplate'))
+	@if (Request::is('customer/paket-produk') || Request::is('customer/single-produk') || Request::is('formTemplate') || Request::is('formPaketTemplate'))
 	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.carousel.css') }}" />
 	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.theme.default.css') }}" />
 	@endif
@@ -134,7 +135,7 @@
 	<script src="{{ asset('user/vendor/isotope/isotope.js') }}"></script>
 
 	{{-- Jika halaman FOrm pilih Template --}}
-	@if (Request::is('formTemplate'))
+	@if (Request::is('formTemplate') || Request::is('formPaketTemplate'))
 	<script src="{{ asset('user/vendor/jquery-validation/jquery.validate.js') }}"></script>
 	<script src="{{ asset('user/vendor/bootstrapv5-wizard/jquery.bootstrap.wizard.js') }}"></script>
 
@@ -159,7 +160,6 @@
 	{{-- Jika Halaman Pesanan User --}}
 	@if (Request::is('PesananUser'))
 	<script src="{{ asset('user/vendor/select2/js/select2.js') }}"></script>
-	<script src="{{ asset('user/vendor/pnotify/pnotify.custom.js') }}"></script>
 	
 	<script src="{{ asset('user/vendor/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('user/vendor/datatables/media/js/dataTables.bootstrap5.min.js') }}"></script>
@@ -168,7 +168,7 @@
 	<script src="{{ asset('user/js/examples/examples.modals.js') }}"></script>
 	@endif
 
-	@if (Request::is('ProdukPaket') || Request::is('ProdukSingle') || Request::is('formTemplate'))
+	@if (Request::is('customer/paket-produk') || Request::is('customer/single-produk') || Request::is('formTemplate') || Request::is('formPaketTemplate'))
 	<script src="{{ asset('user/vendor/owl.carousel/owl.carousel.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.mediagallery.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.lightbox.js') }}"></script>
@@ -192,8 +192,20 @@
 	<script src="{{ url('user/js/examples/examples.dashboard.js') }}"></script>
 	<script src="{{ url('user/js/examples/examples.notifications.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.loading.overlay.js') }}"></script>
+	@if (Request::is('customer/single-produk') || Request::is('formPaketTemplate'))
+	<script>
+		$(document).ready(function () {
 
-
+			$('.test-popup-link').magnificPopup({
+				type: 'image',
+				// other options
+				gallery: {
+					enabled: true
+				},
+			});
+		});
+	</script>
+	@endif
 </body>
 
 </html>
