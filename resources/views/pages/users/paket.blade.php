@@ -83,20 +83,20 @@
 </div>
 
 <div class="owl-carousel owl-theme" data-plugin-carousel data-plugin-options='{ "dots": true, "autoplay": true, "autoplayTimeout": 3000, "loop": true, "margin": 10, "nav": false, "responsive": {"0":{"items":1 }, "600":{"items":3 }, "1000":{"items":6 } }  }'>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-1.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-2.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-3.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-4.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-5.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-6.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-7.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-1.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-2.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-3.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-4.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-5.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-6.jpg" alt=""></div>
-    <div class="item"><img class="img-thumbnail" src="user/img/projects/project-7.jpg" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-1.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-2.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-3.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-4.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-5.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-6.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-7.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-1.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-2.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-3.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-4.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-5.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-6.jpg') }}" alt=""></div>
+    <div class="item"><img class="img-thumbnail" src="{{ asset('user/img/projects/project-7.jpg') }}" alt=""></div>
  </div>
 
 <div class="col-lg-6 col-xl-12 pt-xl-2 mt-xl-4">
@@ -112,7 +112,7 @@
                     <span>30 days</span>
                 </div>
                 <div class="col-md-4 text-left text-md-right pe-md-4 mt-4 mt-md-0 d-flex justify-content-end">
-                    <a href="/ProdukSingle" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Lihat Selengkapnya</a>
+                    <a href="{{ route('single-produk') }}" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Lihat Selengkapnya</a>
                 </div>
             </div>
         </div>
