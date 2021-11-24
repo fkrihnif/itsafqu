@@ -55,7 +55,11 @@
                     <label for="thumbnail"><strong>Upload thumbnail:</strong> <i>(jpeg,png,jpg,svg)</i></label>
                     <input class="form-control-file" type="file" name="thumbnail" id="thumbnail"
                      >
-                </div>      
+                </div>  
+                <div class="form-group">
+                    <label for="image">Image (Bisa input lebih dari 1 foto)</label>
+                    <input type="file" class="form-control" name="galleries[]" placeholder="Image" multiple class="form-control" autocomplete="off">
+                </div>    
                 <br>          
 
                 <button type="submit" class="btn btn-primary btn-block">

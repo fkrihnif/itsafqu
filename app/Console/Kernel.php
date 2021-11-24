@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        // Commands\UpdateCron::class,
     ];
 
     /**
@@ -24,7 +25,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $current_date = date('Y-m-d H:i:s');
+            DB::table('orders')->where('deadline', '<', $current_date)->update(['status' => 'Expired']);
+        })->everyMinute();
     }
 
     /**
@@ -32,10 +36,10 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
-    protected function commands()
-    {
-        $this->load(__DIR__.'/Commands');
+    // protected function commands()
+    // {
+    //     $this->load(__DIR__ . '/Commands');
 
-        require base_path('routes/console.php');
-    }
+    //     require base_path('routes/console.php');
+    // }
 }

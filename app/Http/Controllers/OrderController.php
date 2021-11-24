@@ -55,7 +55,24 @@ class OrderController extends Controller
     public function order(Request $request, $id)
     {
         $id_kode = $id;
-        return view('pages.landing.form2', compact('id_kode'));
+        //cek type paket undangan masing2
+        $cek = $id;
+        $cek_type = mb_substr($cek, 0, 1);
+
+        if ($cek_type == 'G') {
+            $get_id = ImageTemplate::where('kode', $cek)->first()->id;
+            //get type paket
+            $package = ImageTemplate::where('kode', $cek)->first()->packages_id;
+        } else if ($cek_type == 'V') {
+            $get_id = VideoTemplate::where('kode', $cek)->first()->id;
+            //get type paket
+            $package = VideoTemplate::where('kode', $cek)->first()->packages_id;
+        } else if ($cek_type == 'W') {
+            $get_id = WebTemplate::where('kode', $cek)->first()->id;
+            //get type paket
+            $package = WebTemplate::where('kode', $cek)->first()->packages_id;
+        }
+        return view('pages.landing.form2', compact('id_kode', 'package', 'cek_type'));
     }
 
     public function orderStore(Request $request, $id)
@@ -125,10 +142,12 @@ class OrderController extends Controller
         $order->ayah_pr = $request->ayah_pr;
         $order->ibu_pr = $request->ibu_pr;
         $order->url = '';
+        $now = Carbon::now('Asia/Jakarta');
+        $deadline_save = $now->add('3 day');
+        $order->deadline = $deadline_save;
 
         //deadline pembayaran
-        $now = Carbon::now('Asia/Jakarta');
-        $deadline = $now->add('3 day')->format('d M Y, H:i\ '); //Besok 13:20, 02 Oct 2020
+        $deadline = $deadline_save->format('d M Y, H:i\ '); //Besok 13:20, 02 Oct 2020
 
         $order->save();
 
@@ -192,21 +211,13 @@ class OrderController extends Controller
 
         $url = $request->url;
 
-        $now = Carbon::now('Asia/Jakarta');
-        $deadline = $now->add('3 day')->format('d M Y, H:i\ ');
+        $get_deadline = Order::where('kode_pesanan', $kode_pesanan)->first()->deadline;
+        $deadline = $get_deadline;
 
         $cek = $kode_pesanan;
         $cek_type = mb_substr($kode_pesanan, 0, 1);
 
-        if ($cek_type == 'G') {
-            //get harga
-            $get_id = Order::where('kode_pesanan', $kode_pesanan)->first()->image_templates_id;
-            $harga = ImageTemplate::where('id', $get_id)->first()->harga;
-        } else if ($cek_type == 'V') {
-            //get harga
-            $get_id = Order::where('kode_pesanan', $kode_pesanan)->first()->video_templates_id;
-            $harga = VideoTemplate::where('id', $get_id)->first()->harga;
-        } else if ($cek_type == 'W') {
+        if ($cek_type == 'W') {
             //get harga
             $get_id = Order::where('kode_pesanan', $kode_pesanan)->first()->web_templates_id;
             $harga = WebTemplate::where('id', $get_id)->first()->harga;
@@ -221,6 +232,13 @@ class OrderController extends Controller
             return view('auth.login');
         } elseif (url()->current() == 'http://127.0.0.1:8000/register') {
             return view('auth.register');
+        }
+
+        //jika dia blm bayar atau deadline sudah expired maka tdk bisa buka linknya, else bisa buka
+        $deadline = Order::where('url', $link)->first()->deadline;
+        $current_date = date('Y-m-d H:i:s');
+        if ($deadline < $current_date) {
+            abort(403, 'Maaf Undangan Website Anda Sudah Expired :(');
         }
 
         //ambil data order, akad, resepsi

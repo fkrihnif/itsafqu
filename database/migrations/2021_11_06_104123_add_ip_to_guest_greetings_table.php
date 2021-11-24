@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUrlToOrdersTable extends Migration
+class AddIpToGuestGreetingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddUrlToOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('url')->unique();
+        Schema::table('guest_greetings', function (Blueprint $table) {
+            $table->text('ip_address');
         });
     }
 
@@ -25,8 +25,8 @@ class AddUrlToOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('url');
+        Schema::table('guest_greetings', function (Blueprint $table) {
+            $table->dropColumn('ip_address');
         });
     }
 }

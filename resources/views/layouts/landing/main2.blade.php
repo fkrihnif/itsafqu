@@ -63,6 +63,29 @@
 	</div>
 
 	<!-- Vendor -->
+	<script>
+		var loadFile = function(event) {
+		  var output = document.getElementById('output');
+		  output.src = URL.createObjectURL(event.target.files[0]);
+		  output.onload = function() {
+			URL.revokeObjectURL(output.src) // free memory
+		  }
+		};
+	  </script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+		var i = 0;
+		$("#dynamic-ar").click(function () {
+			++i;
+			$("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
+				'][subject]" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+				);
+		});
+		$(document).on('click', '.remove-input-field', function () {
+			$(this).parents('tr').remove();
+		});
+	</script>
+
 	<script src="{{ url('user/vendor/jquery/jquery.js') }}"></script>
 	<script src="{{ url('user/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
 	<script src="{{ url('user/vendor/popper/umd/popper.min.js') }}"></script>

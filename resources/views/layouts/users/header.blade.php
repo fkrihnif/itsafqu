@@ -1,6 +1,6 @@
 <header class="header">
     <div class="logo-container">
-        <a href="../4.0.0" class="logo">
+        <a href="/" class="logo">
             <img src="{{ url('user/img/logoputih.png') }}" width="100" height="45" alt="Porto Admin" />
         </a>
 
@@ -34,12 +34,10 @@
                 <ul class="list-unstyled mb-2">
                     <li class="divider"></li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i
+                        <a role="menuitem" tabindex="-1" href="{{ route('edit-profile.edit', Auth::user()->id) }}"><i
                                 class="bx bx-user-circle"></i> My Profile</a>
                     </li>
                     <li>
-                        {{-- <a role="menuitem" tabindex="-1" href="pages-signin.html"><i
-                                class="bx bx-power-off"></i> Logout</a> --}}
                                 <form action="{{ url('logout') }}" method="POST">
                                     @csrf
                                     <button class="btn btn-danger btn-sm" type="submit">Logout</button>

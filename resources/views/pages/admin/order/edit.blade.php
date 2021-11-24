@@ -30,7 +30,7 @@
                         <option value="Dibayar">Dibayar</option>
                         <option value="Selesai">Selesai</option>
                         <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
-                        <option value="Melewati Batas Waktu Pembayaran">Melewati Batas Waktu Pembayaran</option>
+                        <option value="Expired">Expired</option>
                     </select>
                 </div>
 

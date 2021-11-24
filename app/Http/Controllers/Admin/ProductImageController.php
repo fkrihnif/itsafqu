@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ImageGallery;
 use App\Models\Package;
 use App\Models\ImageTemplate;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class ProductImageController extends Controller
      */
     public function index()
     {
-        $images = ImageTemplate::orderBy('id', 'DESC')->get();
+        $images = ImageTemplate::with(['image_galleries'])->orderBy('id', 'DESC')->get();
         return view('pages.admin.produk-gambar.index', compact('images'));
     }
 
@@ -69,6 +70,17 @@ class ProductImageController extends Controller
         $input_kode = ImageTemplate::findOrFail($product->id);
         $input_kode->kode = $string;
         $input_kode->update();
+
+        if ($files = $request->file('galleries')) {
+            foreach ($files as $file) {
+                $dataGallery['image_templates_id'] = $product->id;
+                $dataGallery['gallery'] = $file->store(
+                    'image-gallery',
+                    'public'
+                );
+                ImageGallery::create($dataGallery);
+            }
+        }
 
         return redirect()->route('produk-gambar.index')->with('status', 'Produk Berhasil Dibuat!');
     }

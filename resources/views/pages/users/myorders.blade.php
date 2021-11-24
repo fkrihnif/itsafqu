@@ -49,8 +49,10 @@
                         @elseif($cek_type == 'W')
                             Website
                             <br>
+                            @if ($order->status != 'Expired')
                             <a href="{{ route('show-wedding', $order->url) }}" target="_blank"><button type="button"
                                 class="btn btn-primary btn-sm mb-2">Lihat Undangan Saya</button></a>
+                            @endif
                         @endif
                     </td>
                     <td>
@@ -69,7 +71,7 @@
                         <span class="badge badge-success">{{ $order->status }}</span>  + <span class="badge badge-success">{{ $order->is_aktif }}</span></td>
                         @elseif ($order->status == 'Selesai')
                         <span class="badge badge-info">{{ $order->status }}</span>
-                        @elseif ($order->status == 'Melewati Batas Waktu Pembayaran')
+                        @elseif ($order->status == 'Expired')
                         <span class="badge badge-danger">{{ $order->status }}</span>
                         @endif
                     <td>

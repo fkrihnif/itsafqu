@@ -1,11 +1,11 @@
-(function($) {
+(function ($) {
 
 	/*
 	Thumbnail: Select
 	*/
-	$('.mg-option input[type=checkbox]').on('change', function( ev ) {
+	$('.mg-option input[type=checkbox]').on('change', function (ev) {
 		var wrapper = $(this).parents('.thumbnail');
-		if($(this).is(':checked')) {
+		if ($(this).is(':checked')) {
 			wrapper.addClass('thumbnail-selected');
 		} else {
 			wrapper.removeClass('thumbnail-selected');
@@ -17,13 +17,13 @@
 	/*
 	Toolbar: Select All
 	*/
-	$('#mgSelectAll').on('click', function( ev ) {
+	$('#mgSelectAll').on('click', function (ev) {
 		ev.preventDefault();
 		var $this = $(this),
 			$label = $this.find('> span');
-			$checks = $('.mg-option input[type=checkbox]');
+		$checks = $('.mg-option input[type=checkbox]');
 
-		if($this.attr('data-all-selected')) {
+		if ($this.attr('data-all-selected')) {
 			$this.removeAttr('data-all-selected');
 			$checks.prop('checked', false).trigger('change');
 			$label.html($label.data('all-text'));
@@ -33,6 +33,29 @@
 			$label.html($label.data('none-text'));
 		}
 	});
+
+	$('input[name=termsR]').change(function () {
+		var wrapper = $(this).parents('.thumbnail');
+		$('.cumaini').removeClass('thumbnail-selected');
+		$(wrapper).addClass('thumbnail-selected');
+		var is_external = $("input[name='termsR']:checked").val();//name is is_external not radio
+		$('.tampil').html('Template WEB dipilih: <span class="badge badge-dark">' + is_external + '</span>');
+	});
+	$('input[name=termsR2]').change(function () {
+		var wrapper = $(this).parents('.thumbnail');
+		$('.cumaini2').removeClass('thumbnail-selected');
+		$(wrapper).addClass('thumbnail-selected');
+		var is_external = $("input[name='termsR2']:checked").val();//name is is_external not radio
+		$('.tampil2').html('Template GAMBAR dipilih: <span class="badge badge-dark">' + is_external + '</span>');
+	});
+	$('input[name=termsR3]').change(function () {
+		var wrapper = $(this).parents('.thumbnail');
+		$('.cumaini3').removeClass('thumbnail-selected');
+		$(wrapper).addClass('thumbnail-selected');
+		var is_external = $("input[name='termsR3']:checked").val();//name is is_external not radio
+		$('.tampil3').html('Template VIDEO dipilih: <span class="badge badge-dark">' + is_external + '</span>');
+	});
+
 
 	/*
 	Image Preview: Lightbox
@@ -46,7 +69,7 @@
 		}
 	});
 
-	$('.thumb-preview .mg-zoom').on('click.lightbox', function( ev ) {
+	$('.thumb-preview .mg-zoom').on('click.lightbox', function (ev) {
 		ev.preventDefault();
 		$(this).closest('.thumb-preview').find('a.thumb-image').triggerHandler('click');
 	});
@@ -55,16 +78,16 @@
 	Thumnail: Dropdown Options
 	*/
 	$('.thumbnail .mg-toggle').parent()
-		.on('show.bs.dropdown', function( ev ) {
+		.on('show.bs.dropdown', function (ev) {
 			$(this).closest('.mg-thumb-options').css('overflow', 'visible');
 		})
-		.on('hidden.bs.dropdown', function( ev ) {
+		.on('hidden.bs.dropdown', function (ev) {
 			$(this).closest('.mg-thumb-options').css('overflow', '');
 		});
 
-	$('.thumbnail').on('mouseenter', function() {
+	$('.thumbnail').on('mouseenter', function () {
 		var toggle = $(this).find('.mg-toggle');
-		if ( toggle.parent().hasClass('open') ) {
+		if (toggle.parent().hasClass('open')) {
 			toggle.dropdown('toggle');
 		}
 	});
@@ -72,25 +95,25 @@
 	/*
 	Isotope: Sort Thumbnails
 	*/
-	$("[data-sort-source]").each(function() {
+	$("[data-sort-source]").each(function () {
 
 		var source = $(this);
 		var destination = $("[data-sort-destination][data-sort-id=" + $(this).attr("data-sort-id") + "]");
 
-		if(destination.get(0)) {
+		if (destination.get(0)) {
 
-			$(window).on('load', function() {
+			$(window).on('load', function () {
 
 				destination.isotope({
 					itemSelector: ".isotope-item",
 					layoutMode: 'fitRows'
 				});
 
-				$(window).on('sidebar-left-toggle inner-menu-toggle', function() {
+				$(window).on('sidebar-left-toggle inner-menu-toggle', function () {
 					destination.isotope();
 				});
 
-				source.find("a[data-option-value]").click(function(e) {
+				source.find("a[data-option-value]").click(function (e) {
 
 					e.preventDefault();
 
@@ -104,17 +127,17 @@
 						filter: filter
 					});
 
-					if(window.location.hash != "" || filter.replace(".","") != "*") {
-						window.location.hash = filter.replace(".","");
+					if (window.location.hash != "" || filter.replace(".", "") != "*") {
+						window.location.hash = filter.replace(".", "");
 					}
 
 					return false;
 
 				});
 
-				$(window).bind("hashchange", function(e) {
+				$(window).bind("hashchange", function (e) {
 
-					var hashFilter = "." + location.hash.replace("#",""),
+					var hashFilter = "." + location.hash.replace("#", ""),
 						hash = (hashFilter == "." || hashFilter == ".*" ? "*" : hashFilter);
 
 					source.find(".active").removeClass("active");
@@ -126,10 +149,10 @@
 
 				});
 
-				var hashFilter = "." + (location.hash.replace("#","") || "*");
+				var hashFilter = "." + (location.hash.replace("#", "") || "*");
 				var initFilterEl = source.find("a[data-option-value='" + hashFilter + "']");
 
-				if(initFilterEl.get(0)) {
+				if (initFilterEl.get(0)) {
 					source.find("[data-option-value='" + hashFilter + "']").click();
 				} else {
 					source.find(".active a").click();

@@ -136,6 +136,12 @@ class MyOrderController extends Controller
         $order = Order::findOrFail($id);
         $order->delete();
 
+        $akad = Contract::where('orders_id', $id);
+        $akad->delete();
+
+        $resepsi = Reception::where('orders_id', $id);
+        $resepsi->delete();
+
         return redirect()->route('pesanan-ku.index')->with('status', 'Order Berhasil Dihapus!');
     }
 }

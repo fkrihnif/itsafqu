@@ -563,8 +563,16 @@
                                 @guest
                                     <a href="/form_daftar/{{ $image->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
                                 @endguest
-                                <a class="test-popup-link btn btn-dark btn-sm mb-2" href="{{ Storage::url($image->thumbnail) }}">Preview</a>
+                                <a class="test-popup-link btn btn-dark btn-sm mb-2" 
+                                href="{{ Storage::url($image->thumbnail) }}"
+                                >Preview</a>
+                          
                             </div>
+                            @foreach ($image->image_galleries as $gallery)
+                            <div class="test-popup-link" 
+                               href="{{ Storage::url($gallery->gallery) }}"  
+                                ></div>
+                                @endforeach 
                         </div>
                     </div>
                     @endforeach
@@ -694,7 +702,6 @@
                                 <li>File Directory</li>
                                 <li>Halaman Kedua Mempelai</li>
                                 <li>Halaman Kegiatan/Acara</li>
-                                <li>Buku Tamu</li>
                                 <li>Halaman Ucapan Tamu</li>
                                 <li>Lokasi (GMaps)</li>
                                 <li>Bebas Pilih Template</li>

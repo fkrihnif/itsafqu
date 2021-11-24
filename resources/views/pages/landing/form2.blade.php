@@ -34,6 +34,14 @@
 											<a class="nav-link" href="#w4-confirm"
 												data-bs-toggle="tab"><span>4</span>Resepsi</a>
 										</li>
+										@if ($cek_type == 'W')
+										@if ($package != 1)
+										<li class="nav-item">
+											<a class="nav-link" href="#w4-story"
+												data-bs-toggle="tab"><span>5</span>Cerita Cinta</a>
+										</li>
+										@endif	
+										@endif
 									</ul>
 								</div>
 									<div class="tab-content">
@@ -55,6 +63,17 @@
 													value="{{ old('nama_panggilan_pria') }}" required>
 												</div>
 											</div>
+											@if ($cek_type == 'W')
+											@if ($package != 1)
+											<div class="form-group row">
+												<div class="col-lg-12">
+												<label class="form-label" for="w4-namaLengkap">Foto Mempelai Pria</label>
+												<input type="file" accept="image/*" onchange="loadFile(event)" class="form-control" name="foto_laki">
+												<img id="output" width="100" height="100" />
+											</div>
+											</div>
+											@endif
+										@endif
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Ayah</label>
@@ -71,6 +90,7 @@
 													value="{{ old('ibu_pria') }}"  required>
 												</div>
 											</div>
+							
 										</div>
 										<div id="w4-profile" class="tab-pane">
 											<div class="form-group row">
@@ -90,6 +110,17 @@
 													value="{{ old('nama_panggilan_pr') }}"required>
 												</div>
 											</div>
+											@if ($cek_type == 'W')
+											@if ($package != 1)
+											<div class="form-group row">
+												<div class="col-lg-12">
+												<label class="form-label" for="w4-namaLengkap">Foto Mempelai Wanita</label>
+												<input type="file" accept="image/*" onchange="loadFile(event)" class="form-control" name="foto_pr">
+												<img id="output" width="100" height="100" />
+											</div>
+											</div>
+											@endif
+										@endif
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama Ayah</label>
@@ -182,12 +213,57 @@
 													required>
 												</div>
 											</div>
+											@if ($cek_type == 'W')
+											@if ($package == 1)
 											<div class="row mt-3">
 												<button type="submit" class="btn btn-primary btn-block" style="height: 40px;">
 													Simpan dan Lanjut
 												</button>
+											</div>
+											@endif
+											@endif
+								
 										</div>
+										@if ($cek_type == 'W')
+										@if ($package != 1)
+										<div id="w4-story" class="tab-pane">
+											<div class="form-group row">
+												<div class="col-lg-12">
+													<label class="form-label">Tanggal</label>
+													<input type="text" class="form-control" id="validationCustom01"
+													name="addmore[0][tanggal]"
+													value="{{ old('tanggal') }}" placeholder="Contoh: 30 September 2021"
+														required>
+												</div>
+											</div>
+											<div class="form-group row">
+												<div class="col-lg-12">
+													<label class="form-label">Judul</label>
+													<input type="text" 	name="addmore[0][judul]"
+													value="{{ old('judul') }}" class="form-control" id="validationCustom01" placeholder="Contoh: Ta'aruf"
+													required>
+												</div>
+											</div>
+											<div class="form-group row">
+												<div class="col-lg-12">
+													<label class="form-label">Isi Cerita</label>
+													<textarea 	name="addmore[0][cerita]"
+													value="{{ old('cerita') }}" placeholder="Contoh: Saat itu kami ..."
+														rows="3" class="form-control text-3 h-auto py-2"
+														required id="validationCustom01"></textarea>
+												</div>
+											</div>
+											<div>
+												<button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add Subject</button>
+											</div>
+											<div class="row mt-3">
+												<button type="submit" class="btn btn-primary btn-block" style="height: 40px;">
+													Simpan dan Lanjut
+												</button>
+											</div>
 										</div>
+										@endif
+										@endif
 									</div>
 								
 							</div>

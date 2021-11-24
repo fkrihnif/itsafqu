@@ -49,6 +49,7 @@ Route::prefix('customer')
             ->name('single-produk');
         Route::get('/paket-produk', [App\Http\Controllers\User\PackageProductController::class, 'index'])
             ->name('paket-produk');
+        Route::resource('edit-profile', '\App\Http\Controllers\User\EditProfileController');
     });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -65,7 +66,7 @@ Route::post('/order/store/{id_kode}', [App\Http\Controllers\OrderController::cla
 Route::get('/link/{kode_pesanan}', [App\Http\Controllers\OrderController::class, 'link'])->name('link')->middleware(['auth']);
 Route::post('/link/store/{kode_pesanan}', [App\Http\Controllers\OrderController::class, 'linkStore'])->middleware(['auth']);
 
-Route::get('/{link}', [App\Http\Controllers\OrderController::class, 'show'])->name('show-wedding');
+Route::get('/.{link}', [App\Http\Controllers\OrderController::class, 'show'])->name('show-wedding');
 
 
 
@@ -78,8 +79,9 @@ Route::get('/Login', [HomeController::class, 'Login'])->name('login');
 Route::get('/Register', [HomeController::class, 'Register'])->name('register');
 Route::get('/DashboardUser', [HomeController::class, 'DashboardU'])->name('dashboardu');
 Route::get('/PesananUser', [HomeController::class, 'MyOrders'])->name('myorders');
-Route::get('/ProdukPaket', [HomeController::class, 'Paket'])->name('paket');
+Route::get('/ProdukPaket/asd', [App\Http\Controllers\OrderPackageController::class, 'testt'])->name('paket');
 Route::get('/ProdukSingle', [HomeController::class, 'Single'])->name('single');
 Route::get('/Team', [HomeController::class, 'Team'])->name('team');
+Route::view('/formPaketTemplate', 'pages/users/formPaketTemplate');
 
 Auth::routes();

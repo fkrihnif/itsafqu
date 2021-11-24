@@ -43,7 +43,13 @@
                             <td>{{ $image->nama }}</td>
                             <td>{{ $image->harga }}</td>
                             <td><img src="{{ Storage::url($image->thumbnail) }}" alt="{{ $image->nama }}"
-                                    width="100px" class="img-thumbnail"></td>
+                                    width="100px" class="img-thumbnail">
+                                <hr>
+                                @foreach ($image->image_galleries as $gallery)
+                                <img src="{{ Storage::url($gallery->gallery) }}"
+                                width="60px" class="img-thumbnail">
+                                @endforeach
+                                </td>
                             <td>
                             @if ($image->is_recommended == 'NO')
                                 <a href="actioneditgambar/{{ $image->id }}" type="submit" onclick="return confirm('Yakin ingin mengubah menjadi Recommended?');" class="btn btn-warning btn-sm">NO</a>

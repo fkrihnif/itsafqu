@@ -69,9 +69,14 @@
                         <a href="{{ route('order.edit', $order->id) }}" class="btn btn-info">
                             <i class="fa fa-pencil-alt"></i>
                         </a>
-                        <button class="btn btn-danger">
-                            <i class="fa fa-trash"></i>
-                        </button>
+                        <form action="{{ route('order.destroy', $order->id) }}" method="POST"
+                            class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
                         
                     </td>
                 </tr>

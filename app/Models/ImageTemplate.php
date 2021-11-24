@@ -24,4 +24,9 @@ class ImageTemplate extends Model
     {
         return $this->hasMany(Order::class, 'image_templates_id', 'id');
     }
+
+    public function image_galleries()
+    {
+        return $this->hasMany(ImageGallery::class, 'image_templates_id', 'id');
+    }
 }

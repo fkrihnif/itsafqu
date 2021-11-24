@@ -2,6 +2,46 @@
 
 @section('container')
 
+<head>
+    <style>
+        /* penggunaan media query pada default tablet layout */
+        
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .gambar {
+                width: auto !important;
+                height: 250px;
+            }
+        }
+
+        /* penggunaan media query pada mobile layout */
+        @media only screen and (min-width: 480px) and (max-width: 767px) {
+            .gambar {
+                width: auto !important;
+                height: 210px;
+            }
+        }
+
+        @media only screen and (min-width: 180px) and (max-width: 479px) {
+            .gambar {
+                width: auto !important;
+                height: 190px;
+            }
+        }
+
+        /* penggunaan media query pada default monitor layout */
+        @media only screen and (min-width: 992px) {
+            .gambar {
+                width: auto !important;
+                height: 320px;
+                max-height: 320px;
+            }
+        }
+    </style>
+</head>
 <div role="main" class="main">
     <div class="shape-divider shape-divider-bottom" style="height: 120px;">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 2000 245"
@@ -60,23 +100,8 @@
                         @endauth
                         @guest
                             <a href="/form_daftar/{{ $image->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
-                        @endguest                           
-                        <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#image">
-                        Preview
-                        </button>
-                        <div class="modal fade" id="image" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="largeModalLabel">{{ $image->nama }}</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body" style="text-align: center">
-                                        <img src="{{ Storage::url($image->thumbnail) }}" alt="" style="height: 300px">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endguest
+                        <a class="test-popup-link btn btn-dark btn-sm mb-2" href="{{ Storage::url($image->thumbnail) }}">Preview</a>
                     </div>
                 </div>
             </div>
@@ -105,22 +130,7 @@
                         @guest
                             <a href="/form_daftar/{{ $video->kode }}/create" class="btn btn-info btn-sm mb-2">Pesan</a>
                         @endguest
-                       <button class="btn btn-dark btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#video">
-                        Preview
-                        </button>
-                        <div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="largeModalLabel">{{ $video->nama }}</h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body" style="text-align: center">
-                                        <iframe width="auto" height="315" src="{{ $video->link }}"></iframe>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a class="popup-youtube btn btn-dark btn-sm mb-2" href="{{ $video->link }}">Preview</a>
                     </div>
                 </div>
             </div>

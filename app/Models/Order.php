@@ -54,4 +54,14 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
+
+    public function love_story()
+    {
+        return $this->hasMany(Guest::class, 'orders_id', 'id');
+    }
+
+    public function guest_greeting()
+    {
+        return $this->hasMany(GuestGreeting::class, 'orders_id', 'id');
+    }
 }

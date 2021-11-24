@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $images = ImageTemplate::where('is_recommended', 'YES')->get();
+        $images = ImageTemplate::with(['image_galleries'])->where('is_recommended', 'YES')->get();
         $videos = VideoTemplate::where('is_recommended', 'YES')->get();
         $webs = WebTemplate::where('is_recommended', 'YES')->get();
         return view('pages.landing.landing', compact('images', 'videos', 'webs'));
