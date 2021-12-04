@@ -480,7 +480,7 @@
                                             <div class="card-body p-3">
                                                 <div class="thumb-info thumb-info-hide-wrapper-bg mb-3 pb-2">
                                                     <div class="thumb-info-wrapper">
-                                                        <img src="frontend/img/hemat.jpg" class="img-fluid"
+                                                        <img src="frontend/img/hemat.png" class="img-fluid"
                                                             alt="John Doe" />
                                                     </div>
                                                 </div>
@@ -708,8 +708,12 @@
                             </ul>
                         </div>
                         <div class="plan-footer">
-                            <a data-bs-toggle="modal" data-bs-target="#defaultModal1"
-                                class="btn btn-dark text-3 font-weight-bold border-0 btn-px-5 py-3">PESAN</a>
+                                @auth
+                                <a href="{{ route('orderPaket', 'standar') }}" class="btn btn-dark text-3 font-weight-bold border-0 btn-px-5 py-3">PESAN</a>
+                                @endauth
+                                @guest
+                                    <a href="/daftar/standar/create" class="btn btn-dark text-3 font-weight-bold border-0 btn-px-5 py-3">PESAN</a>
+                                @endguest
                         </div>
                     </div>
                 </div>
@@ -744,8 +748,12 @@
                             </div>
                         </div>
                         <div class="plan-footer">
-                            <a data-bs-toggle="modal" data-bs-target="#defaultModal2"
-                                class="btn btn-gradient text-3 font-weight-bold btn-px-5 py-3">PESAN</a>
+                                @auth
+                                <a href="{{ route('orderPaket', 'premium') }}" class="btn btn-gradient text-3 font-weight-bold btn-px-5 py-3">PESAN</a>
+                                @endauth
+                                @guest
+                                    <a href="/daftar/standar/create" class="btn btn-gradient text-3 font-weight-bold btn-px-5 py-3">PESAN</a>
+                                @endguest
                         </div>
                     </div>
                 </div>
@@ -781,8 +789,12 @@
                             </ul>
                         </div>
                         <div class="plan-footer">
-                            <a data-bs-toggle="modal" data-bs-target="#defaultModal3"
-                                class="btn btn-dark text-3 font-weight-bold border-0 btn-px-5 py-3">PESAN</a>
+                            @auth
+                            <a href="{{ route('orderPaket', 'eksklusif') }}" class="btn btn-dark text-3 font-weight-bold border-0 btn-px-5 py-3">PESAN</a>
+                            @endauth
+                            @guest
+                                <a href="/daftar/standar/create" class="btn btn-dark text-3 font-weight-bold border-0 btn-px-5 py-3">PESAN</a>
+                            @endguest
                         </div>
                     </div>
                 </div>

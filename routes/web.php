@@ -55,7 +55,7 @@ Route::prefix('customer')
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/template', [TemplateController::class, 'index'])->name('template');
 Route::get('/template/{slug}', [TemplateController::class, 'show'])->name('template-detail');
-
+//form single order
 Route::get('/form_daftar/{id}/create', [App\Http\Controllers\OrderController::class, 'formDaftar']);
 
 Route::post('/form_daftar/{id_kode}/create/store', [App\Http\Controllers\OrderController::class, 'daftar']);
@@ -66,8 +66,23 @@ Route::post('/order/store/{id_kode}', [App\Http\Controllers\OrderController::cla
 Route::get('/link/{kode_pesanan}', [App\Http\Controllers\OrderController::class, 'link'])->name('link')->middleware(['auth']);
 Route::post('/link/store/{kode_pesanan}', [App\Http\Controllers\OrderController::class, 'linkStore'])->middleware(['auth']);
 
-Route::get('/.{link}', [App\Http\Controllers\OrderController::class, 'show'])->name('show-wedding');
+Route::get('/{link}', [App\Http\Controllers\OrderController::class, 'show'])->name('show-wedding');
+Route::get('/.{link}', [App\Http\Controllers\OrderController::class, 'showPaket'])->name('show-wedding-paket');
 
+
+//form paket order
+Route::get('/daftar/{id}/create', [App\Http\Controllers\OrderPackageController::class, 'daftar']);
+
+Route::post('/daftar/{id_kode}/create/store', [App\Http\Controllers\OrderPackageController::class, 'daftarStore']);
+
+Route::get('/orderPaket/{id_kode}', [App\Http\Controllers\OrderPackageController::class, 'orderPaket'])->name('orderPaket')->middleware(['auth']);
+Route::post('/orderPaket/store/{id_kode}', [App\Http\Controllers\OrderPackageController::class, 'orderPaketStore'])->middleware(['auth']);
+
+Route::get('/formPaket/{id_kode}', [App\Http\Controllers\OrderPackageController::class, 'formPaket'])->name('formPaket')->middleware(['auth']);
+Route::post('/formPaket/store/{id_kode}', [App\Http\Controllers\OrderPackageController::class, 'formPaketStore'])->middleware(['auth']);
+
+Route::get('/linkPaket/{kode_pesanan}', [App\Http\Controllers\OrderPackageController::class, 'linkPaket'])->name('linkPaket')->middleware(['auth']);
+Route::post('/linkPaket/store/{kode_pesanan}', [App\Http\Controllers\OrderPackageController::class, 'linkPaketStore'])->middleware(['auth']);
 
 
 Route::get('/form2', [HomeController::class, 'form2'])->name('form2');

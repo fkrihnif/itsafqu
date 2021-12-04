@@ -46,12 +46,17 @@
                             Gambar
                         @elseif($cek_type == 'V')
                             Video
-                        @elseif($cek_type == 'W')
+                        @elseif($cek_type == 'W' || $cek_type == 'S' || $cek_type == 'P' || $cek_type == 'E')
                             Website
                             <br>
                             @if ($order->status != 'Expired')
+                            @if ($order->url_subdomain == null || $order->url_subdomain == '')
                             <a href="{{ route('show-wedding', $order->url) }}" target="_blank"><button type="button"
                                 class="btn btn-primary btn-sm mb-2">Lihat Undangan Saya</button></a>
+                            @else
+                            <a href="{{ route('show-wedding-paket', $order->url_subdomain) }}" target="_blank"><button type="button"
+                                class="btn btn-primary btn-sm mb-2">Lihat Undangan Saya</button></a>
+                            @endif
                             @endif
                         @endif
                     </td>

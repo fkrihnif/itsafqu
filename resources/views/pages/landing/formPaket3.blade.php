@@ -64,7 +64,7 @@
 				<div class="row justify-content-center">
 					<div class="col-md-8">
 						<section class="card form-wizard" id="w4">
-							<form action="/order/store/{{ $id_kode }}" method="POST" class="form-horizontal p-3" novalidate="novalidate" enctype="multipart/form-data">
+							<form action="/formPaket/store/{{ $id_kode }}" method="POST" class="form-horizontal p-3" novalidate="novalidate" enctype="multipart/form-data">
 								@csrf
 							<header class="card-header">
 								<h2 class="card-title">Isi data dulu yaa kak...</h2>
@@ -91,14 +91,16 @@
 											<a class="nav-link" href="#w4-confirm"
 												data-bs-toggle="tab"><span>4</span>Resepsi</a>
 										</li>
-										@if ($cek_type == 'W')
-										@if ($package != 1)
+										<?php 
+        									$cek_type = mb_substr($id_kode, 0, 1);
+										
+										?>
+										@if ($cek_type != 'S')
 										<li class="nav-item">
 											<a class="nav-link" href="#w4-story"
 												data-bs-toggle="tab"><span>5</span>Cerita Cinta</a>
 										</li>
 										@endif	
-										@endif
 									</ul>
 								</div>
 									<div class="tab-content">
@@ -137,8 +139,7 @@
 													value="{{ old('ibu_pria') }}"  required>
 												</div>
 											</div>
-											@if ($cek_type == 'W')
-                                    @if ($package != 1)
+									@if ($cek_type != 'S')
                                     <div class="form-group row">
                                         <div class="col-lg-12">
                                             <label class="form-label" for="w4-namaLengkap">Foto Mempelai Pria</label>
@@ -168,7 +169,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @endif
                                     @endif
 							
 										</div>
@@ -206,8 +206,7 @@
 													value="{{ old('ibu_pr') }}"required>
 												</div>
 											</div>
-											@if ($cek_type == 'W')
-                                    @if ($package != 1)
+                                    @if ($cek_type != 'S')
                                     <div class="form-group row">
                                         <div class="col-lg-12">
 											<label class="form-label" for="w4-namaLengkap">Foto Mempelai Wanita</label>
@@ -232,7 +231,6 @@
 											</div>
                                         </div>
                                     </div>
-                                    @endif
                                     @endif
 										</div>
 										<div id="w4-billing" class="tab-pane">
@@ -310,19 +308,16 @@
 													required>
 												</div>
 											</div>
-											@if ($cek_type == 'W')
-											@if ($package == 1)
+											@if ($cek_type == 'S')
 											<div class="row mt-3">
 												<button type="submit" class="btn btn-primary btn-block" style="height: 40px;">
 													Simpan dan Lanjut
 												</button>
 											</div>
 											@endif
-											@endif
 								
 										</div>
-										@if ($cek_type == 'W')
-										@if ($package != 1)
+										@if ($cek_type != 'S')
 										<div id="w4-story" class="tab-pane">
 												<table class="table table-responsive-md table-striped mb-0" <div id="dynamicAddRemove">>
 													<thead>
@@ -354,7 +349,6 @@
 												</button>
 											</div>
 										</div>
-										@endif
 										@endif
 									</div>
 								

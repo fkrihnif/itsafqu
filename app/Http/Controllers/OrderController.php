@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contract;
 use Illuminate\Http\Request;
 use App\Models\ImageTemplate;
+use App\Models\LoveStory;
 use App\Models\User;
 use App\Models\VideoTemplate;
 use App\Models\WebTemplate;
@@ -33,7 +34,7 @@ class OrderController extends Controller
             "username" => "required|unique:users,username",
             "email" => "required|unique:users,email",
             "no_hp" => "required|unique:users,no_hp",
-            "password" => "min:8|required_with:password_confirmation|same:password_confirmation| unique:users,password",
+            "password" => "min:8|required_with:password_confirmation|same:password_confirmation",
             "password_confirmation" => "min:8"
         ])->validate();
 
@@ -145,6 +146,14 @@ class OrderController extends Controller
         $now = Carbon::now('Asia/Jakarta');
         $deadline_save = $now->add('3 day');
         $order->deadline = $deadline_save;
+        if ($request->file("foto_laki")) {
+            $foto_laki = $request->file('foto_laki')->store('foto_pengantin', 'public');
+            $order->foto_laki = $foto_laki;
+        };
+        if ($request->file("foto_pr")) {
+            $foto_pr = $request->file('foto_pr')->store('foto_pengantin', 'public');
+            $order->foto_pr = $foto_pr;
+        };
 
         //deadline pembayaran
         $deadline = $deadline_save->format('d M Y, H:i\ '); //Besok 13:20, 02 Oct 2020
@@ -168,6 +177,22 @@ class OrderController extends Controller
         $resepsi->jam_resepsi = $request->jam_resepsi;
         $resepsi->save();
 
+        //cerita cinta
+        if ($cek_type === 'W') {
+            $cek_paket = WebTemplate::where('kode', $cek)->first()->packages_id;
+            if ($cek_paket != 1) {
+                $request->validate([
+                    'moreFields.*.tanggal' => 'required',
+                    'moreFields.*.judul' => 'required',
+                    'moreFields.*.cerita' => 'required',
+                ]);
+
+                foreach ($request->moreFields as $key => $value) {
+                    $value['orders_id'] = $order->id;
+                    LoveStory::create($value);
+                }
+            }
+        }
 
         //buat pesan email
         $get_email = User::where('id', $request->users_id)->first()->email;
@@ -206,9 +231,15 @@ class OrderController extends Controller
         ])->validate();
 
         $order = Order::where('kode_pesanan', $kode_pesanan)->first();
-        $order->url = $request->url;
-        $order->update();
-
+        $get_web_template = Order::where('kode_pesanan', $kode_pesanan)->first()->web_templates_id;
+        $cek_paket = WebTemplate::where('id', $get_web_template)->first()->packages_id;
+        if ($cek_paket != 1) {
+            $order->url_subdomain = $request->url;
+            $order->update();
+        } else {
+            $order->url = $request->url;
+            $order->update();
+        }
         $url = $request->url;
 
         $get_deadline = Order::where('kode_pesanan', $kode_pesanan)->first()->deadline;
@@ -223,8 +254,9 @@ class OrderController extends Controller
             $harga = WebTemplate::where('id', $get_id)->first()->harga;
         }
 
-        return view('pages.landing.pembayaran', compact('deadline', 'harga', 'kode_pesanan', 'url', 'cek_type'));
+        return view('pages.landing.pembayaran', compact('deadline', 'harga', 'kode_pesanan', 'url', 'paket'));
     }
+
 
     public function show($link)
     {
@@ -251,6 +283,40 @@ class OrderController extends Controller
 
         //ambil id template web
         $get_id = Order::where('url', $link)->first()->web_templates_id;
+
+        $template = WebTemplate::where('id', $get_id)->firstOrFail();
+
+        $a = 'pages.landing.templateWebUser.';
+        $a .= $template->link;
+
+        return view($a, compact('order', 'akad', 'resepsi'));
+    }
+
+    public function showPaket($link)
+    {
+        if (url()->current() == 'http://127.0.0.1:8000/login') {
+            return view('auth.login');
+        } elseif (url()->current() == 'http://127.0.0.1:8000/register') {
+            return view('auth.register');
+        }
+
+        //jika dia blm bayar atau deadline sudah expired maka tdk bisa buka linknya, else bisa buka
+        $deadline = Order::where('url_subdomain', $link)->first()->deadline;
+        $current_date = date('Y-m-d H:i:s');
+        if ($deadline < $current_date) {
+            abort(403, 'Maaf Undangan Website Anda Sudah Expired :(');
+        }
+
+        //ambil data order, akad, resepsi
+        $order_id = Order::where('url_subdomain', $link)->first()->id;
+
+        $order = Order::where('url_subdomain', $link)->firstOrFail();
+
+        $akad = Contract::where('orders_id', $order_id)->firstOrFail();
+        $resepsi = Reception::where('orders_id', $order_id)->firstOrFail();
+
+        //ambil id template web
+        $get_id = Order::where('url_subdomain', $link)->first()->web_templates_id;
 
         $template = WebTemplate::where('id', $get_id)->firstOrFail();
 

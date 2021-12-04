@@ -35,7 +35,7 @@
 	<link rel="stylesheet" href="{{ url('user/vendor/pnotify/pnotify.custom.css') }}" />
 
 	{{-- Jika ke halaman ProdukPaket --}}
-	@if (Request::is('customer/paket-produk') || Request::is('customer/single-produk') || Request::is('formTemplate') || Request::is('formPaketTemplate'))
+	@if (Request::is('customer/paket-produk') || Request::is('customer/single-produk') || Request::is('formTemplate') || Request::is('orderPaket/premium'))
 	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.carousel.css') }}" />
 	<link rel="stylesheet" href="{{ asset('user/vendor/owl.carousel/assets/owl.theme.default.css') }}" />
 	@endif
@@ -135,7 +135,7 @@
 	<script src="{{ asset('user/vendor/isotope/isotope.js') }}"></script>
 
 	{{-- Jika halaman FOrm pilih Template --}}
-	@if (Request::is('formTemplate') || Request::is('formPaketTemplate'))
+	@if (Request::is('formTemplate') || Request::is('orderPaket/premium'))
 	<script src="{{ asset('user/vendor/jquery-validation/jquery.validate.js') }}"></script>
 	<script src="{{ asset('user/vendor/bootstrapv5-wizard/jquery.bootstrap.wizard.js') }}"></script>
 
@@ -168,7 +168,7 @@
 	<script src="{{ asset('user/js/examples/examples.modals.js') }}"></script>
 	@endif
 
-	@if (Request::is('customer/paket-produk') || Request::is('customer/single-produk') || Request::is('formTemplate') || Request::is('formPaketTemplate'))
+	@if (Request::is('customer/paket-produk') || Request::is('customer/single-produk') || Request::is('formTemplate') || Request::is('orderPaket/premium'))
 	<script src="{{ asset('user/vendor/owl.carousel/owl.carousel.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.mediagallery.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.lightbox.js') }}"></script>
@@ -192,7 +192,7 @@
 	<script src="{{ url('user/js/examples/examples.dashboard.js') }}"></script>
 	<script src="{{ url('user/js/examples/examples.notifications.js') }}"></script>
 	<script src="{{ asset('user/js/examples/examples.loading.overlay.js') }}"></script>
-	@if (Request::is('customer/single-produk') || Request::is('formPaketTemplate'))
+	@if (Request::is('customer/single-produk') || Request::is('orderPaket/premium'))
 	<script>
 		$(document).ready(function () {
 
