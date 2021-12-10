@@ -181,11 +181,11 @@ class OrderController extends Controller
         if ($cek_type === 'W') {
             $cek_paket = WebTemplate::where('kode', $cek)->first()->packages_id;
             if ($cek_paket != 1) {
-                $request->validate([
-                    'moreFields.*.tanggal' => 'required',
-                    'moreFields.*.judul' => 'required',
-                    'moreFields.*.cerita' => 'required',
-                ]);
+                // $request->validate([
+                //     'moreFields.*.tanggal' => 'required',
+                //     'moreFields.*.judul' => 'required',
+                //     'moreFields.*.cerita' => 'required',
+                // ]);
 
                 foreach ($request->moreFields as $key => $value) {
                     $value['orders_id'] = $order->id;
@@ -254,7 +254,7 @@ class OrderController extends Controller
             $harga = WebTemplate::where('id', $get_id)->first()->harga;
         }
 
-        return view('pages.landing.pembayaran', compact('deadline', 'harga', 'kode_pesanan', 'url', 'paket'));
+        return view('pages.landing.pembayaran', compact('deadline', 'harga', 'kode_pesanan', 'url', 'cek_type', 'cek_paket'));
     }
 
 

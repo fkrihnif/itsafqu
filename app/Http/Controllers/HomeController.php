@@ -16,4 +16,9 @@ class HomeController extends Controller
         $webs = WebTemplate::where('is_recommended', 'YES')->get();
         return view('pages.landing.landing', compact('images', 'videos', 'webs'));
     }
+
+    public function map()
+    {
+        return view('pages.landing.maps');
+    }
 }

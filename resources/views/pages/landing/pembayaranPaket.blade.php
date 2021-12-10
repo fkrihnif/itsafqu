@@ -33,8 +33,13 @@
 						</div>
 					</div>
 					<div class="d-sm-flex align-items-center justify-content-between mb-3 mt-4 mx-4">
-						<a href="{{ route('show-wedding', $url) }}" target="_blank"><button type="button"
-							class="btn btn-primary mb-2">Lihat Undangan Saya</button></a>
+							@if ($cek_type == 'P' || $cek_type == 'E')
+							<a href="{{ route('show-wedding-paket', $url) }}" target="_blank"><button type="button"
+								class="btn btn-primary mb-2">Lihat Undangan Saya</button></a>
+							@elseif ($cek_type == 'S')
+							<a href="{{ route('show-wedding', $url) }}" target="_blank"><button type="button"
+								class="btn btn-primary mb-2">Lihat Undangan Saya</button></a>
+							@endif
 						<a href="/customer" class="btn btn-outline btn-primary mb-2">Lihat Dashboard Anda</a>
 					</div>
 				</div>
@@ -64,7 +69,7 @@
 	</div>
 	<div class="copyright bg-color-dark-scale-4 py-4">
 		<div class="container text-center py-2">
-			<p class="mb-0 text-2 ls-0">Copyright 2014 - 2021 Porto - All Rights Reserved</p>
+			<p class="mb-0 text-2 ls-0">Copyright 2021 ITSAFQU- All Rights Reserved</p>
 		</div>
 	</div>
 </footer>

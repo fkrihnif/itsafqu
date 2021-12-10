@@ -63,6 +63,15 @@
 			<div class="container py-5 mt-4 mb-3">
 				<div class="row justify-content-center">
 					<div class="col-md-8">
+						@if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
 						<section class="card form-wizard" id="w4">
 							<form action="/order/store/{{ $id_kode }}" method="POST" class="form-horizontal p-3" novalidate="novalidate" enctype="multipart/form-data">
 								@csrf
@@ -106,16 +115,16 @@
 											<div class="form-group row">
 												<input type="hidden" name="users_id" value="{{Auth::user()->id}}">
 												<div class="col-lg-12">
-													<label class="form-label" for="w4-namaLengkap">Nama Lengkap</label>
-													<input type="text" class="form-control" id="validationCustom01" name="nama_lengkap_pria"
+													<label class="form-label" for="nama_lengkap_pria">Nama Lengkap Pria</label>
+													<input type="text" class="form-control" name="nama_lengkap_pria"
 														value="{{ old('nama_lengkap_pria') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
-													<label class="form-label" for="w4-namaLengkap">Nama
-														Panggilan</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<label class="form-label" for="nama_panggilan_pria">Nama
+														Panggilan Pria</label>
+													<input type="text" class="form-control" 
 													name="nama_panggilan_pria"
 													value="{{ old('nama_panggilan_pria') }}" required>
 												</div>
@@ -123,16 +132,16 @@
 											
 											<div class="form-group row">
 												<div class="col-lg-12">
-													<label class="form-label" for="w4-namaLengkap">Nama Ayah</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<label class="form-label" for="ayah_pria">Nama Ayah</label>
+													<input type="text" class="form-control" 
 													name="ayah_pria"
 													value="{{ old('ayah_pria') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
-													<label class="form-label" for="w4-namaLengkap">Nama Ibu</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<label class="form-label" for="ibu_pria">Nama Ibu</label>
+													<input type="text" class="form-control" 
 													name="ibu_pria"
 													value="{{ old('ibu_pria') }}"  required>
 												</div>
@@ -141,7 +150,7 @@
                                     @if ($package != 1)
                                     <div class="form-group row">
                                         <div class="col-lg-12">
-                                            <label class="form-label" for="w4-namaLengkap">Foto Mempelai Pria</label>
+                                            <label class="form-label" for="foto_laki">Foto Mempelai Pria</label>
                                             <div class="accordion accordion-tertiary" id="accordion2Tertiary">
                                                 <div class="card card-default">
                                                     <div class="card-header">
@@ -175,8 +184,8 @@
 										<div id="w4-profile" class="tab-pane">
 											<div class="form-group row">
 												<div class="col-lg-12">
-													<label class="form-label" for="w4-namaLengkap">Nama Lengkap</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<label class="form-label" for="nama_lengkap_pr">Nama Lengkap Wanita</label>
+													<input type="text" class="form-control"
 													name="nama_lengkap_pr"
 													value="{{ old('nama_lengkap_pr') }}" required>
 												</div>
@@ -184,24 +193,24 @@
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label" for="w4-namaLengkap">Nama
-														Panggilan</label>
-													<input type="text" class="form-control" id="validationCustom01"
+														Panggilan Wanita</label>
+													<input type="text" class="form-control"
 													name="nama_panggilan_pr"
 													value="{{ old('nama_panggilan_pr') }}"required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
-													<label class="form-label" for="w4-namaLengkap">Nama Ayah</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<label class="form-label" for="ayah_pr">Nama Ayah</label>
+													<input type="text" class="form-control"
 													name="ayah_pr"
 													value="{{ old('ayah_pr') }}" required>
 												</div>
 											</div>
 											<div class="form-group row">
 												<div class="col-lg-12">
-													<label class="form-label" for="w4-namaLengkap">Nama Ibu</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<label class="form-label" for="ibu_pr">Nama Ibu</label>
+													<input type="text" class="form-control" 
 													name="ibu_pr"
 													value="{{ old('ibu_pr') }}"required>
 												</div>
@@ -210,7 +219,7 @@
                                     @if ($package != 1)
                                     <div class="form-group row">
                                         <div class="col-lg-12">
-											<label class="form-label" for="w4-namaLengkap">Foto Mempelai Wanita</label>
+											<label class="form-label" for="foto_pr">Foto Mempelai Wanita</label>
 											<div class="accordion accordion-secondary" id="accordion2Secondary">
 												<div class="card card-default">
 													<div class="card-header">
@@ -238,14 +247,14 @@
 										<div id="w4-billing" class="tab-pane">
 											<div class="form-gorup row pb-3">
 												<div class="col-lg-6">
-													<label class="form-label">Tanggal</label>
-													<input type="date" class="form-control" id="validationCustom01"
+													<label class="form-label">Tanggal Akad</label>
+													<input type="date" class="form-control"
 													name="tanggal_akad"
 													value="{{ old('tanggal_akad') }}" required>
 												</div>
 												<div class="col-lg-6">
 													<label class="form-label">Waktu / Jam</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<input type="text" class="form-control"
 													name="jam_akad"
 													value="{{ old('jam_akad') }}" placeholder="Contoh: 10.00 pagi" required>
 												</div>
@@ -253,7 +262,7 @@
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label">Tempat/Lokasi</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<input type="text" class="form-control"
 													name="tempat_akad"
 													value="{{ old('tempat_akad') }}" placeholder="Contoh: Kediaman Mempelai Wanita"
 														required>
@@ -265,7 +274,7 @@
 													<textarea value="" placeholder="Contoh: Jalan Ahmad Yani ....."
 														rows="3" class="form-control text-3 h-auto py-2" name="alamat_akad"
 														value="{{ old('alamat_akad') }}"
-														required id="validationCustom01"></textarea>
+														required></textarea>
 												</div>
 											</div>
 										</div>
@@ -273,13 +282,13 @@
 											<div class="form-gorup row pb-3">
 												<div class="col-lg-6">
 													<label class="form-label">Tanggal</label>
-													<input type="date" class="form-control" id="validationCustom01"
+													<input type="date" class="form-control" 
 													name="tanggal_resepsi"
 													value="{{ old('tanggal_resepsi') }}" required>
 												</div>
 												<div class="col-lg-6">
 													<label class="form-label">Waktu / Jam</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<input type="text" class="form-control" 
 													name="jam_resepsi"
 													value="{{ old('jam_resepsi') }}" placeholder="Contoh: 13.00 Siang" required>
 												</div>
@@ -287,7 +296,7 @@
 											<div class="form-group row">
 												<div class="col-lg-12">
 													<label class="form-label">Tempat/Lokasi</label>
-													<input type="text" class="form-control" id="validationCustom01"
+													<input type="text" class="form-control" 
 													name="tempat_resepsi"
 													value="{{ old('tempat_resepsi') }}" placeholder="Contoh: Gedung Serbaguna Mujahidin"
 														required>
@@ -299,7 +308,7 @@
 													<textarea 	name="alamat_resepsi"
 													value="{{ old('alamat_resepsi') }}" placeholder="Contoh: Jalan Ahmad Yani ....."
 														rows="3" class="form-control text-3 h-auto py-2" name="message"
-														required id="validationCustom01"></textarea>
+														required></textarea>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -308,6 +317,7 @@
 													<input type="text" 	name="link_map"
 													value="{{ old('link_map') }}" class="form-control" id="validationCustom01"
 													required>
+													<a href="{{ route('maps') }}" target="_blank">&nbsp; Cara copy link dari google map</a>
 												</div>
 											</div>
 											@if ($cek_type == 'W')
@@ -319,12 +329,20 @@
 											</div>
 											@endif
 											@endif
+
+											@if ($cek_type == 'G' || $cek_type == 'V')
+											<div class="row mt-3">
+												<button type="submit" class="btn btn-primary btn-block" style="height: 40px;">
+													Simpan dan Lanjut
+												</button>
+											</div>
+											@endif
 								
 										</div>
 										@if ($cek_type == 'W')
 										@if ($package != 1)
 										<div id="w4-story" class="tab-pane">
-												<table class="table table-responsive-md table-striped mb-0" <div id="dynamicAddRemove">>
+												<table class="table table-responsive-md table-striped mb-0" id="dynamicAddRemove">
 													<thead>
 														<tr>
 															<th>Tanggal</th>
@@ -400,7 +418,7 @@
 			</div>
 			<div class="copyright bg-color-dark-scale-4 py-4">
 				<div class="container text-center py-2">
-					<p class="mb-0 text-2 ls-0">Copyright 2014 - 2021 Porto - All Rights Reserved</p>
+					<p class="mb-0 text-2 ls-0">Copyright 2021 ITSAFQU- All Rights Reserved</p>
 				</div>
 			</div>
 		</footer>

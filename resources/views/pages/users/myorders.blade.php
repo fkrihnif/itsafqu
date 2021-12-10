@@ -95,14 +95,14 @@
                         @if ($order->is_aktif == 'Belum Aktif' && $order->status == 'Dibayar')            
                         @else
                      
-                        <form action="{{ route('pesanan-ku.destroy', $order->id) }}" method="POST"
+                        {{-- <form action="{{ route('pesanan-ku.destroy', $order->id) }}" method="POST"
                             class="d-inline" onclick="return confirm('Yakin ingin menghapus?');">
                             @csrf
                             @method('delete')
                             <button class="btn btn-danger">
                                 <i class="fa fa-trash"></i>
                             </button>
-                        </form>
+                        </form> --}}
                         @endif
                         
                     </td>

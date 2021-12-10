@@ -53,6 +53,7 @@ Route::prefix('customer')
     });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/maps', [HomeController::class, 'map'])->name('maps');
 Route::get('/template', [TemplateController::class, 'index'])->name('template');
 Route::get('/template/{slug}', [TemplateController::class, 'show'])->name('template-detail');
 //form single order
@@ -67,7 +68,7 @@ Route::get('/link/{kode_pesanan}', [App\Http\Controllers\OrderController::class,
 Route::post('/link/store/{kode_pesanan}', [App\Http\Controllers\OrderController::class, 'linkStore'])->middleware(['auth']);
 
 Route::get('/{link}', [App\Http\Controllers\OrderController::class, 'show'])->name('show-wedding');
-Route::get('/.{link}', [App\Http\Controllers\OrderController::class, 'showPaket'])->name('show-wedding-paket');
+Route::get('/percobaan/{link}', [App\Http\Controllers\OrderController::class, 'showPaket'])->name('show-wedding-paket');
 
 
 //form paket order

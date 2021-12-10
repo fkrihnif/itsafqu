@@ -4,7 +4,7 @@
 
 <div role="main" class="main">
 	<div class="container py-5 mt-4">
-		<div class="row justify-content-center">
+		<div class="row justify-content-center pt-4">
 			<div class="col-md-8">
 				<p style="text-align: center">
 					<i class="icon-clock icons"></i> Selesaikan pembayaran
@@ -34,8 +34,13 @@
 					</div>
 					<div class="d-sm-flex align-items-center justify-content-between mb-3 mt-4 mx-4">
 						@if ($cek_type == 'W')
+						@if ($cek_paket == 2 || $cek_paket == 3)
+						<a href="{{ route('show-wedding-paket', $url) }}" target="_blank"><button type="button"
+							class="btn btn-primary mb-2">Lihat Undangan Saya</button></a>
+						@elseif ($cek_paket == 1)
 						<a href="{{ route('show-wedding', $url) }}" target="_blank"><button type="button"
 							class="btn btn-primary mb-2">Lihat Undangan Saya</button></a>
+						@endif
 						@else
 						<a href="/" class="btn btn-primary mb-2">Kembali Ke Home</a>
 						@endif
@@ -68,7 +73,7 @@
 	</div>
 	<div class="copyright bg-color-dark-scale-4 py-4">
 		<div class="container text-center py-2">
-			<p class="mb-0 text-2 ls-0">Copyright 2014 - 2021 Porto - All Rights Reserved</p>
+			<p class="mb-0 text-2 ls-0">Copyright 2021 ITSAFQU- All Rights Reserved</p>
 		</div>
 	</div>
 </footer>

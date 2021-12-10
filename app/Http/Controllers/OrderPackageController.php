@@ -197,9 +197,9 @@ class OrderPackageController extends Controller
         //cerita cinta
         if ($cek_paket != 'S') {
             $request->validate([
-                'moreFields.*.tanggal' => 'required',
-                'moreFields.*.judul' => 'required',
-                'moreFields.*.cerita' => 'required',
+                // 'moreFields.*.tanggal' => 'required',
+                // 'moreFields.*.judul' => 'required',
+                // 'moreFields.*.cerita' => 'required',
             ]);
 
             foreach ($request->moreFields as $key => $value) {
@@ -216,15 +216,15 @@ class OrderPackageController extends Controller
 
         $data = array('name' => $get_name, 'price' => $harga, 'deadline' => $deadline, 'kode_pesanan' => $id);
 
-        // Mail::send('pages.landing.mailordercustomer', $data, function ($message) use ($get_email) {
-        //     $message->to($get_email, 'Halo Kak')->subject('Silahkan Lanjutkan pembayaran Anda');
-        //     $message->from(env('MAIL_USERNAME'), 'Admin ITSAFQU');
-        // });
+        Mail::send('pages.landing.mailordercustomer', $data, function ($message) use ($get_email) {
+            $message->to($get_email, 'Halo Kak')->subject('Silahkan Lanjutkan pembayaran Anda');
+            $message->from(env('MAIL_USERNAME'), 'Admin ITSAFQU');
+        });
 
-        // Mail::send('pages.landing.mailorderadmin', $data, function ($message) use ($email_admin) {
-        //     $message->to($email_admin, 'Halo Kak')->subject('Ada Orderan Masok woyy!!');
-        //     $message->from(env('MAIL_USERNAME'), 'Admin ITSAFQU');
-        // });
+        Mail::send('pages.landing.mailorderadmin', $data, function ($message) use ($email_admin) {
+            $message->to($email_admin, 'Halo Kak')->subject('Ada Orderan Masok woyy!!');
+            $message->from(env('MAIL_USERNAME'), 'Admin ITSAFQU');
+        });
 
         return redirect()->route('linkPaket', ['kode_pesanan' => $id]);
     }
@@ -243,7 +243,7 @@ class OrderPackageController extends Controller
 
         $order = Order::where('kode_pesanan', $kode_pesanan)->first();
         $cek_paket = mb_substr($kode_pesanan, 0, 1);
-        if ($cek_paket != 'P') {
+        if ($cek_paket != 'S') {
             $order->url_subdomain = $request->url;
             $order->update();
         } else {
@@ -264,6 +264,6 @@ class OrderPackageController extends Controller
             $harga = 200000;
         }
 
-        return view('pages.landing.pembayaranPaket', compact('deadline', 'harga', 'kode_pesanan', 'url'));
+        return view('pages.landing.pembayaranPaket', compact('deadline', 'harga', 'kode_pesanan', 'url', 'cek_type'));
     }
 }

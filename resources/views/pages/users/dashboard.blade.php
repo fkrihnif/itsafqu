@@ -12,14 +12,14 @@
                     <div class="card-body p-0">
                         <div class="widget-user-info">
                             <div class="widget-user-info-header">
-                                <h2 class="font-weight-bold text-color-dark text-5">Hello, Nama User</h2>
-                                <p class="mb-0">Pelanggan ke-N</p>
+                                <h2 class="font-weight-bold text-color-dark text-5">Hello, {{ Auth::user()->name }}</h2>
+                                {{-- <p class="mb-0">Pelanggan ke-N</p> --}}
 
-                                <div class="widget-user-acrostic bg-primary">
-                                    <span class="font-weight-bold">ISB</span>
-                                </div>
+                                {{-- <div class="widget-user-acrostic bg-primary">
+                                    <span class="font-weight-bold"></span>
+                                </div> --}}
                             </div>
-                            <div class="widget-user-info-body">
+                            {{-- <div class="widget-user-info-body">
                                 <div class="row">
                                     <div class="col-auto">
                                         <strong class="text-color-dark text-5">Nama User</strong>
@@ -31,7 +31,7 @@
                                         <a href="pages-user-profile.html" class="btn btn-light btn-xl border font-weight-semibold text-color-dark text-3 mt-4">View Profile</a>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -45,14 +45,14 @@
                         <div class="row align-items-center">
                             <div class="col-6 col-md-4">
                                 <h3 class="text-4-1 my-0">Total Pesanan Saya</h3>
-                                <strong class="text-6 text-color-dark">4825</strong>
+                                <strong class="text-6 text-color-dark">{{ $order }}</strong>
                             </div>
-                            <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
+                            {{-- <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
                                 <h3 class="text-4-1 text-color-success line-height-2 my-0">Orders <strong>UP &uarr;</strong></h3>
                                 <span>30 days</span>
-                            </div>
+                            </div> --}}
                             <div class="col-md-4 text-left text-md-right pe-md-4 mt-4 mt-md-0 d-flex justify-content-end">
-                                <a href="/PesananUser" class="btn btn-danger text-color-hover-dark"><i class="fas fa-eye"></i> Lihat</a>
+                                <a href="{{ route('pesanan-ku.index') }}" class="btn btn-danger text-color-hover-dark"><i class="fas fa-eye"></i> Lihat</a>
                             </div>
                         </div>
                     </div>
@@ -66,12 +66,12 @@
                                 <h3 class="text-4-1 my-0">3 Pilihan</h3>
                                 <strong class="text-6 text-color-dark">Paket Undangan</strong>
                             </div>
-                            <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
+                            {{-- <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
                                 <h3 class="text-4-1 text-color-danger line-height-2 my-0">Price <strong>DOWN &darr;</strong></h3>
                                 <span>30 days</span>
-                            </div>
+                            </div> --}}
                             <div class="col-md-4 text-left text-md-right pe-md-4 mt-4 mt-md-0 d-flex justify-content-end">
-                                <a href="/ProdukPaket" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
+                                <a href="{{ route('paket-produk') }}" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
                             </div>
                         </div>
                     </div>
@@ -85,12 +85,12 @@
                                 <h3 class="text-4-1 my-0">3 Item (Web, Gambar, Video)</h3>
                                 <strong class="text-6 text-color-dark">Single Item</strong>
                             </div>
-                            <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
+                            {{-- <div class="col-6 col-md-4 border border-top-0 border-end-0 border-bottom-0 border-color-light-grey py-3">
                                 <h3 class="text-4-1 text-color-danger line-height-2 my-0">Price <strong>DOWN &darr;</strong></h3>
                                 <span>30 days</span>
-                            </div>
+                            </div> --}}
                             <div class="col-md-4 text-left text-md-right pe-md-4 mt-4 mt-md-0 d-flex justify-content-end">
-                                <a href="/ProdukSingle" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
+                                <a href="{{ route('single-produk') }}" class="btn btn-danger text-color-hover-dark"><i class="fas fa-shopping-cart"></i> Pesan</a>
                             </div>
                         </div>
                     </div>

@@ -88,7 +88,7 @@
 			</div>
 			<div class="copyright bg-color-dark-scale-4 py-4">
 				<div class="container text-center py-2">
-					<p class="mb-0 text-2 ls-0">Copyright 2014 - 2021 Porto - All Rights Reserved</p>
+					<p class="mb-0 text-2 ls-0">Copyright 2021 ITSAFQU- All Rights Reserved</p>
 				</div>
 			</div>
 		</footer>

@@ -776,7 +776,7 @@
                                 <li>Halaman Kegiatan/Acara</li>
                                 <li class=" text-color-primary">Halaman Cerita Cinta</li>
                                 <li>Buku Tamu</li>
-                                <li class=" text-color-primary">QR Qode (Tamu)</li>
+                                <li class=" text-color-primary">QR Qode (Tamu) <i style="color: red">coming soon</i></li>
                                 <li>Halaman Ucapan Tamu</li>
                                 <li>Lokasi (GMaps)</li>
                                 <li>Bebas Pilih Template</li>
@@ -836,40 +836,24 @@
                     <div class="owl-carousel owl-theme nav-bottom rounded-nav mb-0"
                         data-plugin-options="{'items': 1, 'loop': false}">
                         <div>
-                            <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-0">
-                                <div class="testimonial-author mb-0">
-                                    <img src="{{ asset('frontend/img/clients/client-1.jpg') }}"
-                                        class="img-fluid rounded-circle mb-1" alt="">
-                                </div>
+                            <div class="testimonial testimonial-style-2 testimonial-with-quotes">
                                 <blockquote>
-                                    <p class="text-color-dark opacity-7 mb-0">Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at,
-                                        interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sociis natoque penatibus et magnis dis
-                                        parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis
-                                        non consectetur sed, pharetra nec ex.</p>
+                                    <p class="text-color-dark opacity-7 mb-0">baguss, respon admin cepat serta harga terjangkau! keren sih ownernya di pontianak :')</p>
                                 </blockquote>
                                 <div class="testimonial-author mb-3">
-                                    <p><strong class="font-weight-bold">John Smith</strong><span
-                                            class="font-weight-normal">CEO & Founder - Okler</span></p>
+                                    <p><strong class="font-weight-bold">Muhammad Doni</strong><span
+                                            class="font-weight-normal"></span></p>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <div class="testimonial testimonial-style-2 testimonial-with-quotes mb-0">
-                                <div class="testimonial-author mb-0">
-                                    <img src="{{ asset('frontend/img/clients/client-2.jpg') }}"
-                                        class="img-fluid rounded-circle mb-1" alt="">
-                                </div>
+                            <div class="testimonial testimonial-style-2 testimonial-with-quotes">
                                 <blockquote>
-                                    <p class="text-color-dark opacity-7 mb-0">Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at,
-                                        interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit.</p>
+                                    <p class="text-color-dark opacity-7 mb-0">GGWP! harga terjangkau, dan tentunya hemat biaya!</p>
                                 </blockquote>
                                 <div class="testimonial-author">
-                                    <p><strong class="font-weight-bold">Jessica Smith</strong><span
-                                            class="font-weight-normal">Marketing - Okler</span></p>
+                                    <p><strong class="font-weight-bold">Hanif Zain</strong><span
+                                            class="font-weight-normal"></span></p>
                                 </div>
                             </div>
                         </div>

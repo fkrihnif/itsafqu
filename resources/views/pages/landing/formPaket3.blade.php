@@ -63,6 +63,15 @@
 			<div class="container py-5 mt-4 mb-3">
 				<div class="row justify-content-center">
 					<div class="col-md-8">
+						@if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
 						<section class="card form-wizard" id="w4">
 							<form action="/formPaket/store/{{ $id_kode }}" method="POST" class="form-horizontal p-3" novalidate="novalidate" enctype="multipart/form-data">
 								@csrf
@@ -306,6 +315,7 @@
 													<input type="text" 	name="link_map"
 													value="{{ old('link_map') }}" class="form-control" id="validationCustom01"
 													required>
+													<a href="{{ route('maps') }}" target="_blank">&nbsp; Cara copy link dari google map</a>
 												</div>
 											</div>
 											@if ($cek_type == 'S')
@@ -319,7 +329,7 @@
 										</div>
 										@if ($cek_type != 'S')
 										<div id="w4-story" class="tab-pane">
-												<table class="table table-responsive-md table-striped mb-0" <div id="dynamicAddRemove">>
+												<table class="table table-responsive-md table-striped mb-0" id="dynamicAddRemove">
 													<thead>
 														<tr>
 															<th>Tanggal</th>
